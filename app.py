@@ -9,6 +9,10 @@ app = Flask(__name__)
 def get_intro():   
     return render_template("componants/index.html")
 
+@app.route('/create')
+def create_character():
+    return render_template("pages/create.html")
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             debug=True)
