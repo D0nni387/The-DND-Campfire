@@ -17,6 +17,10 @@ def create_character():
 def get_party():
     return render_template("pages/party.html")
 
+@app.route('/account')
+def my_account():
+    return render_template("pages/account.html")
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             debug=True)
