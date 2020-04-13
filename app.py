@@ -13,6 +13,10 @@ def get_intro():
 def create_character():
     return render_template("pages/create.html")
 
+@app.route('/party')
+def get_party():
+    return render_template("pages/party.html")
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             debug=True)
