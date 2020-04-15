@@ -13,6 +13,10 @@ def get_intro():
 def create_character():
     return render_template("pages/create.html")
 
+@app.route('/insert_character', methods=['POST'])
+def insert_character():
+    return redirect(url_for('get_party'))
+
 @app.route('/party')
 def get_party():
     return render_template("pages/party.html")
