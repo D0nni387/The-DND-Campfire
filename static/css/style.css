@@ -1,8 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Girassol&family=Gotu&display=swap');
 
+body {
+    font-family: "Gotu", sans-serif;
+}
 
-.html {
-    background-color: aqua;
+.header {
+    font-family: "Girassol", sans-serif;
+    text-align: center;
 }
 
 .logo {
