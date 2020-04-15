@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def get_intro():   
-    return render_template("componants/index.html")
+    return render_template("components/index.html")
 
 @app.route('/create')
 def create_character():
