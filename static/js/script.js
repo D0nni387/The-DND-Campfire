@@ -69,4 +69,10 @@ progress.addEventListener('click', () => {
   equipFetch();
 });
 
-
+function equipFetch() {
+  fetch(`${baseURL}starting-equipment/${idNum}`)
+  .then(response => response.json())
+  .then(staEqu => {
+    console.log(staEqu)
+  })
+}
