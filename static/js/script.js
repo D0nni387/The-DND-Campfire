@@ -38,3 +38,24 @@ classId.addEventListener('click', () => {
   profFetch();
 });
 
+function profFetch() {
+
+  fetch(`${baseURL}${id}`)
+    .then(response => response.json())
+    .then(profs => {
+      let profList = profs.proficiency_choices[0].from
+         profList.forEach(profOf => {
+        let profOption = document.createElement("div");
+        let profName = document.createElement("p");
+        let name = document.createTextNode(profOf.name)
+
+
+        profName.appendChild(name)
+        profOption.appendChild(profName)
+        profOption.id = profOf.name
+        profOption.classList.add("skill")
+        document.getElementById("proficiencies").appendChild(profOption)
+      })
+    })
+}
+
