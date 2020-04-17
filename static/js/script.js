@@ -1,14 +1,15 @@
 const classId = document.getElementById("progress");
+const progress = document.getElementById("progressTwo")
 const classChoice = document.getElementById("classList")
 
 
-let baseURL = "http://dnd5eapi.co/api/classes/"
-
+let baseURL = "http://dnd5eapi.co/api/"
+let i = 1
 
 
 function classFetch() {
 
-  fetch(baseURL)
+  fetch(`${baseURL}/classes`)
     .then(response => response.json())
     .then(classes => {
       let classList = classes.results;
@@ -17,13 +18,15 @@ function classFetch() {
         let classOption = document.createElement("option");
         let className = document.createElement("p");
         let name = document.createTextNode(classOp.name);
-
-
+        
         className.appendChild(name);
         classOption.appendChild(className);
         classOption.id = classOp.index;
         classOption.classList.add("class");
+        className.id = i
+        className.classList.add("classId")
         document.getElementById("classList").appendChild(classOption);
+        i++ 
       });
 
     })
@@ -34,28 +37,36 @@ classFetch();
 
 classId.addEventListener('click', () => {
   id = classChoice.options[classChoice.selectedIndex].id;
+
   console.log(id)
   profFetch();
 });
 
 function profFetch() {
 
-  fetch(`${baseURL}${id}`)
+  fetch(`${baseURL}classes/${id}`)
     .then(response => response.json())
     .then(profs => {
       let profList = profs.proficiency_choices[0].from
          profList.forEach(profOf => {
-        let profOption = document.createElement("div");
+        let profOption = document.createElement("option");
         let profName = document.createElement("p");
         let name = document.createTextNode(profOf.name)
 
 
         profName.appendChild(name)
         profOption.appendChild(profName)
-        profOption.id = profOf.name
+        profOption.id = profOf.index
         profOption.classList.add("skill")
         document.getElementById("proficiencies").appendChild(profOption)
       })
     })
 }
+
+progress.addEventListener('click', () => {
+  idNum = classChoice.options[classChoice.selectedIndex].firstElementChild.id  
+  console.log(idNum)
+  equipFetch();
+});
+
 
