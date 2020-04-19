@@ -74,5 +74,17 @@ function equipFetch() {
   .then(response => response.json())
   .then(staEqu => {
     console.log(staEqu)
+    let startEquip = staEqu.starting_equipment
+    startEquip.forEach(obj => {
+        let equipCont = document.createElement("div")
+        let equipText = document.createElement("p")
+        let equipName = document.createTextNode(obj.name)
+
+        equipText.appendChild(equipName)
+        equipCont.appendChild(equipText)
+        equipCont.classList.add("adapt")
+        document.getElementById("startEquip")
+        
+    })
   })
 }
