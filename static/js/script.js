@@ -3,6 +3,7 @@ const progress = document.getElementById("progressTwo")
 const classChoice = document.getElementById("classList")
 
 
+
 let baseURL = "http://dnd5eapi.co/api/"
 let i = 1
 
@@ -54,6 +55,16 @@ function profFetch() {
   fetch(`${baseURL}classes/${id}`)
     .then(response => response.json())
     .then(profs => {
+       
+      let hit = profs.hit_die
+      document.getElementById("hitDie").placeholder=(`${hit}`)
+
+      let saveOne = profs.saving_throws[0].name
+      document.getElementById("savingThrow1").placeholder=(`${saveOne}`)
+
+      let saveTwo = profs.saving_throws[1].name
+      document.getElementById("savingThrow2").placeholder=(`${saveTwo}`)
+
       let profList = profs.proficiency_choices[0].from
          profList.forEach(profOf => {
         let profOption = document.createElement("option");
