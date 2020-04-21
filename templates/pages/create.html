@@ -2,13 +2,36 @@
 {% block content %}
 <div class="container-fluid">
     <form action="{{ url_for('insert_character') }}" method="POST" class="col-12">
-        <select name="classList" id="classList">
-        </select>
+        <div class="form-group">
+            <label for="classList">Select Your Class</label>
+            <select class="form-control" id="classList" name="classList">
 
-    <a class="btn" id="progress" href="#">Next!</a>
+            </select>
+        </div>
 
-    <select class="profs" id="proficiencies"></select>
-    <a class="btn" id="progressTwo" href="#">Next!</a>
+        <a class="btn" id="progress" href="#">Next!</a>
+        <label for="hitDie">Hit Die</label>
+        <input class="form-control" type="text" id="hitDie" placeholder="Hit Die" readonly>
+        <label for="savingThrow1">Saving Throw</label>
+        <input class="form-control" type="text" id="savingThrow1" placeholder="STR" readonly>
+        <label for="savingThrow2">Saving Throw</label>
+        <input class="form-control" type="text" id="savingThrow2" placeholder="DXT" readonly>
+
+        <div class="form-group">
+            <label for="proficiencies">Select Your Proficiencies</label>
+            <select class="form-control" id="proficiencies">
+
+            </select>
+        </div>
+        <a class="btn" id="progressTwo" href="#">Next!</a>
+        <div class="form-group">
+            <label for="equip">Select Your Starting Equipment</label>
+            <select class="form-control" id="equip">
+
+            </select>
+        </div>
+        <a class="btn" id="progressThree" href="#">Next!</a>
+
     </form>
 </div>
 
