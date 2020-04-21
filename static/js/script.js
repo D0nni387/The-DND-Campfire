@@ -13,12 +13,14 @@ function classFetch() {
     .then(response => response.json())
     .then(classes => {
       let classList = classes.results;
+      delete classList[5]
       classList.forEach(classOp => {
-
+        
         let classOption = document.createElement("option");
         let className = document.createElement("p");
         let name = document.createTextNode(classOp.name);
         
+
         className.appendChild(name);
         classOption.appendChild(className);
         classOption.id = classOp.index;
