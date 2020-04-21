@@ -6,7 +6,9 @@ const classChoice = document.getElementById("classList")
 let baseURL = "http://dnd5eapi.co/api/"
 let i = 1
 
-
+/**
+ * Fetches classes and populates select data
+ */
 function classFetch() {
 
   fetch(`${baseURL}/classes`)
@@ -44,6 +46,9 @@ classId.addEventListener('click', () => {
   profFetch();
 });
 
+/**
+ * Fetches Proficiencies and populates select data
+ */
 function profFetch() {
 
   fetch(`${baseURL}classes/${id}`)
@@ -65,12 +70,9 @@ function profFetch() {
     })
 }
 
-progress.addEventListener('click', () => {
-  idNum = classChoice.options[classChoice.selectedIndex].firstElementChild.id  
-  console.log(idNum)
-  equipFetch();
-});
-
+/**
+ * Fetches starting-equipment and creates div elements
+ */
 function equipFetch() {
   fetch(`${baseURL}starting-equipment/${idNum}`)
   .then(response => response.json())
@@ -90,3 +92,10 @@ function equipFetch() {
     })
   })
 }
+
+
+progress.addEventListener('click', () => {
+  idNum = classChoice.options[classChoice.selectedIndex].firstElementChild.id  
+  console.log(idNum)
+  equipFetch();
+});
