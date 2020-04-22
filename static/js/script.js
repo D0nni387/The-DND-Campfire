@@ -4,7 +4,7 @@ const classChoice = document.getElementById("classList")
 
 
 
-let baseURL = "https://dnd5eapi.co/api/"
+let baseURL = "https://cors-anywhere.herokuapp.com/https://dnd5eapi.co/api/"
 
 
 /**
@@ -12,7 +12,7 @@ let baseURL = "https://dnd5eapi.co/api/"
  */
 function classFetch() {
 
-  fetch(`${baseURL}/classes`)
+  fetch(`${baseURL}classes`)
     .then(response => response.json())
     .then(classes => {
       let i = 1
