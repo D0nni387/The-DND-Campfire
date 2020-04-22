@@ -17,3 +17,30 @@ body {
 .hide {
     display:none;
 }
+
+
+.loader {
+    display: flex;
+    justify-content: center;
+}
+
+#loading {
+    border: 1rem solid #e6a11c;
+    border-top: 1rem solid #D3D3D3;
+    border-radius: 50%;
+    width: 10rem;
+    height: 10rem;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+

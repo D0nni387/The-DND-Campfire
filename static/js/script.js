@@ -1,6 +1,7 @@
 const classId = document.getElementById("progress");
 const progress = document.getElementById("progressTwo")
 const classChoice = document.getElementById("classList")
+const load = document.getElementById("loading");
 
 
 
@@ -102,12 +103,12 @@ function equipFetch() {
     .then(response => response.json())
     .then(equip => {
 
-      let startEquipOne = equip.starting_equipment[0].item.name
-      document.getElementById("startEquip1").value = (`${startEquipOne}`)
+        let startEquipOne = equip.starting_equipment[0].item.name
+        document.getElementById("startEquip1").value = (`${startEquipOne}`)
 
-      let startEquipTwo = equip.starting_equipment[1].item.name
-      document.getElementById("startEquip2").value = (`${startEquipTwo}`)
-      
+        let startEquipTwo = equip.starting_equipment[1].item.name
+        document.getElementById("startEquip2").value = (`${startEquipTwo}`)
+
       }
 
     )
@@ -118,3 +119,11 @@ progress.addEventListener('click', () => {
   idNum = classChoice.options[classChoice.selectedIndex].firstElementChild.id
   equipFetch();
 });
+
+function loader(loading) {
+  if (loading) {
+    load.classList.remove("hide");
+  } else {
+    load.classList.add("hide");
+  }
+}

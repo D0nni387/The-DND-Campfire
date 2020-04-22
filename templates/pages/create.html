@@ -2,61 +2,72 @@
 {% block content %}
 <div class="container-fluid">
     <form action="{{ url_for('insert_character') }}" method="POST" class="col-12">
+        <div class="container">
+            <div class="row loader">
+              <div id="loading" class=""></div>
+            </div>
+          </div>
         
-        <div class="form-group">
-            <label for="name">Character Name</label>
-            <input class="form-control" type="text" placeholder="Character Name" name="name">
-        </div>
-        
-        <div class="form-group">
+        <div class="container">
+            <div class="form-group">
+                <label for="name">Character Name</label>
+                <input class="form-control" type="text" placeholder="Character Name" name="name">
+            </div>
 
-            <label for="classList">Select Your Class</label>
-            <select class="form-control" id="classList" name="class_list">
+            <div class="form-group">
 
-            </select>
-        </div>
+                <label for="classList">Select Your Class</label>
+                <select class="form-control" id="classList" name="class_list">
 
-        <a class="btn" id="progress" href="#">Next!</a>
-
-        <label for="hitDie">Hit Die</label>
-        <input class="form-control" name="hit_die" type="text" id="hitDie" value="default" readonly>
-
-        <label for="savingThrow1">Saving Throw</label>
-        <input class="form-control" name="saving_throw1" type="text" id="savingThrow1" value="default" readonly>
-
-        <label for="savingThrow2">Saving Throw</label>
-        <input class="form-control" name="saving_throw2" type="text" id="savingThrow2" value="default" readonly>
-
-        <div class="form-group">
-            <label for="proficienciesOne">Select Your First Proficiency</label>
-            <select class="form-control" name="proficiency1" id="proficienciesOne">
-
-            </select>
-            <label for="proficienciesTwo">Select Your Second Proficiency</label>
-            <select class="form-control" name="proficiency2" id="proficienciesTwo">
-
-            </select>
+                </select>
+            </div>
+            <a class="btn" id="progress" href="#">Next!</a>
         </div>
 
-        <a class="btn" id="progressTwo" href="#">Next!</a>
 
-        <div class="form-group">
-            <label for="equip">Select Your Starting Equipment</label>
-            <select class="form-control" name="start_equipment_choice" id="equip">
+        <div class="container hide">
+            <label for="hitDie">Hit Die</label>
+            <input class="form-control" name="hit_die" type="text" id="hitDie" value="default" readonly>
 
-            </select>
+            <label for="savingThrow1">Saving Throw</label>
+            <input class="form-control" name="saving_throw1" type="text" id="savingThrow1" value="default" readonly>
+
+            <label for="savingThrow2">Saving Throw</label>
+            <input class="form-control" name="saving_throw2" type="text" id="savingThrow2" value="default" readonly>
+
+            <div class="form-group">
+                <label for="proficienciesOne">Select Your First Proficiency</label>
+                <select class="form-control" name="proficiency1" id="proficienciesOne">
+
+                </select>
+                <label for="proficienciesTwo">Select Your Second Proficiency</label>
+                <select class="form-control" name="proficiency2" id="proficienciesTwo">
+
+                </select>
+            </div>
+
+            <a class="btn" id="progressTwo" href="#">Next!</a>
         </div>
 
-        <a class="btn" id="progressThree" href="#">Next!</a>
+        <div class="container hide">
+            <div class="form-group">
+                <label for="equip">Select Your Starting Equipment</label>
+                <select class="form-control" name="start_equipment_choice" id="equip">
 
-        <div class="div">
-            <label for="savingThrow2">Starting Equipment</label>
-            <input class="form-control" name="start_equip1" type="text" id="startEquip1"  value="" readonly>
+                </select>
+            </div>
 
-            <label for="savingThrow2">Starting Equipment</label>
-            <input class="form-control" name="start_equip2" type="text" id="startEquip2"  value="" readonly>
+            <a class="btn" id="progressThree" href="#">Next!</a>
+
+            <div class="div">
+                <label for="savingThrow2">Starting Equipment</label>
+                <input class="form-control" name="start_equip1" type="text" id="startEquip1" value="" readonly>
+
+                <label for="savingThrow2">Starting Equipment</label>
+                <input class="form-control" name="start_equip2" type="text" id="startEquip2" value="" readonly>
+            </div>
+            <button class="btn" type="submit" name="action">Add</button>
         </div>
-        <button class="btn"type="submit" name="action">Add</button>
     </form>
 </div>
 
