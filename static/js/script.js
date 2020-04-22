@@ -5,7 +5,7 @@ const classChoice = document.getElementById("classList")
 
 
 let baseURL = "http://dnd5eapi.co/api/"
-let i = 1
+
 
 /**
  * Fetches classes and populates select data
@@ -15,14 +15,15 @@ function classFetch() {
   fetch(`${baseURL}/classes`)
     .then(response => response.json())
     .then(classes => {
+      let i = 1
       let classList = classes.results;
       delete classList[5]
       classList.forEach(classOp => {
-        
+
         let classOption = document.createElement("option");
         let className = document.createElement("p");
         let name = document.createTextNode(classOp.name);
-        
+
 
         className.appendChild(name);
         classOption.appendChild(className);
@@ -31,7 +32,7 @@ function classFetch() {
         className.id = i
         className.classList.add("classId")
         document.getElementById("classList").appendChild(classOption);
-        i++ 
+        i++
       });
 
     })
@@ -42,8 +43,6 @@ classFetch();
 
 classId.addEventListener('click', () => {
   id = classChoice.options[classChoice.selectedIndex].id;
-
-  console.log(id)
   profFetch();
 });
 
@@ -55,18 +54,18 @@ function profFetch() {
   fetch(`${baseURL}classes/${id}`)
     .then(response => response.json())
     .then(profs => {
-       
+
       let hit = profs.hit_die
-      document.getElementById("hitDie").placeholder=(`${hit}`)
+      document.getElementById("hitDie").placeholder = (`${hit}`)
 
       let saveOne = profs.saving_throws[0].name
-      document.getElementById("savingThrow1").placeholder=(`${saveOne}`)
+      document.getElementById("savingThrow1").placeholder = (`${saveOne}`)
 
       let saveTwo = profs.saving_throws[1].name
-      document.getElementById("savingThrow2").placeholder=(`${saveTwo}`)
+      document.getElementById("savingThrow2").placeholder = (`${saveTwo}`)
 
       let profList = profs.proficiency_choices[0].from
-         profList.forEach(profOf => {
+      profList.forEach(profOf => {
         let profOption = document.createElement("option");
         let profName = document.createElement("p");
         let name = document.createTextNode(profOf.name)
@@ -76,7 +75,8 @@ function profFetch() {
         profOption.appendChild(profName)
         profOption.id = profOf.index
         profOption.classList.add("skill")
-        document.getElementById("proficiencies").appendChild(profOption)
+        document.getElementById("proficienciesOne").appendChild(profOption)
+
       })
     })
 }
@@ -86,27 +86,22 @@ function profFetch() {
  */
 function equipFetch() {
   fetch(`${baseURL}starting-equipment/${idNum}`)
-  .then(response => response.json())
-  .then(staEqu => {
-    console.log(staEqu)
-    let startEquip = staEqu.starting_equipment
-    startEquip.forEach(obj => {
-        let equipCont = document.createElement("div")
-        let equipText = document.createElement("p")
-        let equipName = document.createTextNode(obj.name)
+    .then(response => response.json())
+    .then(equip => {
 
-        equipText.appendChild(equipName)
-        equipCont.appendChild(equipText)
-        equipCont.classList.add("adapt")
-        document.getElementById("startEquip")
-        
-    })
-  })
+      let startEquipOne = equip.starting_equipment[0].item.name
+      document.getElementById("startEquip1").placeholder = (`${startEquipOne}`)
+
+      let startEquipTwo = equip.starting_equipment[1].item.name
+      document.getElementById("startEquip2").placeholder = (`${startEquipTwo}`)
+      
+      }
+
+    )
 }
 
 
 progress.addEventListener('click', () => {
-  idNum = classChoice.options[classChoice.selectedIndex].firstElementChild.id  
-  console.log(idNum)
+  idNum = classChoice.options[classChoice.selectedIndex].firstElementChild.id
   equipFetch();
 });
