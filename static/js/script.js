@@ -78,6 +78,19 @@ function profFetch() {
         document.getElementById("proficienciesOne").appendChild(profOption)
 
       })
+      profList.forEach(profOf => {
+        let profOption = document.createElement("option");
+        let profName = document.createElement("p");
+        let name = document.createTextNode(profOf.name)
+
+
+        profName.appendChild(name)
+        profOption.appendChild(profName)
+        profOption.id = profOf.index
+        profOption.classList.add("skill")
+        document.getElementById("proficienciesTwo").appendChild(profOption)
+
+      })
     })
 }
 
