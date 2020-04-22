@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, jsonify
 import pymongo
 from bson.objectid import ObjectId
 
@@ -21,7 +21,13 @@ def create_character():
 
 @APP.route('/insert_character', methods=['POST'])
 def insert_character():
-    return redirect(url_for('get_party'))
+    return jsonify({'name':request.form.get('name'),
+                    'class':request.form.get('class_list'), 
+                    'hit_die':request.form.get('hit_die'),
+                    'saving_throw1':request.form.get('saving_throw1'),
+                    'saving_throw2':request.form.get('saving_throw2'),
+                    'proficiency1':request.form.get('proficiency1'),
+                    'proficiency2':request.form.get('proficiency2')})
 
 
 @APP.route('/party')
@@ -35,5 +41,4 @@ def my_account():
 
 
 if __name__ == '__main__':
-    APP.run(host=os.environ.get('IP'), port=os.environ.get('PORT'),
-            debug=os.environ.get('DEBUG'))
+    APP.run(host=os.environ.get('IP'), port=os.environ.get('PORT'),debug=True)
