@@ -4,7 +4,7 @@ const classChoice = document.getElementById("classList")
 const load = document.getElementById("loading");
 const phaseOne = document.getElementById("phaseOne")
 const phaseTwo = document.getElementById("phaseTwo")
-const phasethree = document.getElementById("phaseThree")
+const phaseThree = document.getElementById("phaseThree")
 
 
 let baseURL = "https://cors-anywhere.herokuapp.com/https://dnd5eapi.co/api/"
@@ -48,6 +48,7 @@ classFetch();
 
 classId.addEventListener('click', () => {
   id = classChoice.options[classChoice.selectedIndex].id;
+  phaseOne.classList.add("hide")
   profFetch();
 });
 
@@ -55,7 +56,7 @@ classId.addEventListener('click', () => {
  * Fetches Proficiencies and populates select data
  */
 function profFetch() {
-
+  loader(true)
   fetch(`${baseURL}classes/${id}`)
     .then(response => response.json())
     .then(profs => {
@@ -97,12 +98,22 @@ function profFetch() {
 
       })
     })
+  
+  phaseTwo.classList.remove("hide")
+  loader(false)
 }
+
+progress.addEventListener('click', () => {
+  idNum = classChoice.options[classChoice.selectedIndex].firstElementChild.id
+  phaseTwo.classList.add("hide")
+  equipFetch();
+});
 
 /**
  * Fetches starting-equipment and creates div elements
  */
 function equipFetch() {
+  loader(true)
   fetch(`${baseURL}starting-equipment/${idNum}`)
     .then(response => response.json())
     .then(equip => {
@@ -113,16 +124,13 @@ function equipFetch() {
         let startEquipTwo = equip.starting_equipment[1].item.name
         document.getElementById("startEquip2").value = (`${startEquipTwo}`)
 
-      }
-
-    )
+      })
+    loader(false)
+    phaseThree.classList.remove("hide")
 }
 
 
-progress.addEventListener('click', () => {
-  idNum = classChoice.options[classChoice.selectedIndex].firstElementChild.id
-  equipFetch();
-});
+
 
 function loader(loading) {
   if (loading) {
