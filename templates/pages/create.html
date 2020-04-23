@@ -1,6 +1,6 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid" >
     <form action="{{ url_for('insert_character') }}" method="POST" class="col-12">
         <div class="container">
             <div class="row loader">
@@ -8,7 +8,7 @@
             </div>
           </div>
         
-        <div class="container">
+        <div class="container hide" id="phaseOne">
             <div class="form-group">
                 <label for="name">Character Name</label>
                 <input class="form-control" type="text" placeholder="Character Name" name="name">
@@ -25,7 +25,7 @@
         </div>
 
 
-        <div class="container hide">
+        <div class="container hide" id="phaseTwo">
             <label for="hitDie">Hit Die</label>
             <input class="form-control" name="hit_die" type="text" id="hitDie" value="default" readonly>
 
@@ -49,7 +49,7 @@
             <a class="btn" id="progressTwo" href="#">Next!</a>
         </div>
 
-        <div class="container hide">
+        <div class="container hide" id="phaseThree">
             <div class="form-group">
                 <label for="equip">Select Your Starting Equipment</label>
                 <select class="form-control" name="start_equipment_choice" id="equip">
