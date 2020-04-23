@@ -37,11 +37,11 @@ function classFetch() {
         document.getElementById("classList").appendChild(classOption);
         i++
       });
-      
+
     })
     .catch(() => console.error());
-    loader(false)
-    phaseOne.classList.remove("hide")
+  loader(false)
+  phaseOne.classList.remove("hide")
 }
 
 classFetch();
@@ -98,7 +98,7 @@ function profFetch() {
 
       })
     })
-  
+
   phaseTwo.classList.remove("hide")
   loader(false)
 }
@@ -118,15 +118,37 @@ function equipFetch() {
     .then(response => response.json())
     .then(equip => {
 
-        let startEquipOne = equip.starting_equipment[0].item.name
-        document.getElementById("startEquip1").value = (`${startEquipOne}`)
+      let startEquipOne = equip.starting_equipment[0].item.name
+      document.getElementById("startEquip1").value = (`${startEquipOne}`)
 
-        let startEquipTwo = equip.starting_equipment[1].item.name
+      let startEquipTwo = equip.starting_equipment[1].item.name
+
+      if (startEquipTwo == "") {
+        document.getElementById("startEquip2").value = (`Null`)
+      } else {
         document.getElementById("startEquip2").value = (`${startEquipTwo}`)
+      }
+
+      let equipChoice = equip.choice_1[1].from
+      console.log(equipChoice)
+      equipChoice.forEach(profOf => {
+        let profOption = document.createElement("option");
+        let profName = document.createElement("p");
+        let name = document.createTextNode(profOf.item.name)
+
+
+        profName.appendChild(name)
+        profOption.appendChild(profName)
+        profOption.id = profOf.index
+        profOption.classList.add("skill")
+        document.getElementById("equip").appendChild(profOption)
 
       })
-    loader(false)
-    phaseThree.classList.remove("hide")
+    })
+
+
+  loader(false)
+  phaseThree.classList.remove("hide")
 }
 
 
