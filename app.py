@@ -37,6 +37,7 @@ def insert_character():
                     'saving_throw2':request.form.get('saving_throw2'),
                     'proficiency1':request.form.get('proficiency1'),
                     'proficiency2':request.form.get('proficiency2'),
+                    'start_equipment_choice':request.form.get('start_equipment_choice'),
                     'start_equip1':request.form.get('start_equip1'),
                     'start_equip2':request.form.get('start_equip2')})
 
