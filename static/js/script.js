@@ -2,7 +2,9 @@ const classId = document.getElementById("progress");
 const progress = document.getElementById("progressTwo")
 const classChoice = document.getElementById("classList")
 const load = document.getElementById("loading");
-
+const phaseOne = document.getElementById("phaseOne")
+const phaseTwo = document.getElementById("phaseTwo")
+const phasethree = document.getElementById("phaseThree")
 
 
 let baseURL = "https://cors-anywhere.herokuapp.com/https://dnd5eapi.co/api/"
@@ -12,7 +14,7 @@ let baseURL = "https://cors-anywhere.herokuapp.com/https://dnd5eapi.co/api/"
  * Fetches classes and populates select data
  */
 function classFetch() {
-
+  loader(true)
   fetch(`${baseURL}classes`)
     .then(response => response.json())
     .then(classes => {
@@ -35,9 +37,11 @@ function classFetch() {
         document.getElementById("classList").appendChild(classOption);
         i++
       });
-
+      
     })
     .catch(() => console.error());
+    loader(false)
+    phaseOne.classList.remove("hide")
 }
 
 classFetch();
