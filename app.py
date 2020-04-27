@@ -57,6 +57,13 @@ def my_account():
     """
     return render_template("pages/account.html")
 
+@APP.route('/login')
+def login():
+    """
+    Returns Login Page
+    """
+    return render_template("pages/login.html")
+
 
 if __name__ == '__main__':
     APP.run(host=os.environ.get('IP'), port=os.environ.get('PORT'),debug=True)
