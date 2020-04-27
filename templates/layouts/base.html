@@ -12,19 +12,14 @@
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <img class="logo img-fluid" src="/static/images/logo.png">
-        </div>
-    </div>
+    {% include 'components/logo.html' %}
     {% include 'layouts/nav.html' %}
 
     {% block content %}
     {% endblock %}
 
     {% include 'layouts/footer.html' %}
-
-
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
