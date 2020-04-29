@@ -14,7 +14,7 @@ def get_intro():
     return render_template("pages/index.html")
 
 
-@APP.route('/create')
+@APP.route('/character/create')
 def create_character():
 
     """
@@ -24,7 +24,7 @@ def create_character():
     return render_template("pages/create.html")
 
 
-@APP.route('/insert_character', methods=['POST'])
+@APP.route('/character/insert_character', methods=['POST'])
 def insert_character():
 
     """
