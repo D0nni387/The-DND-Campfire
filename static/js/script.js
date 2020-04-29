@@ -6,16 +6,16 @@ const phaseOne = document.getElementById("phaseOne")
 const phaseTwo = document.getElementById("phaseTwo")
 const phaseThree = document.getElementById("phaseThree")
 const classesList = document.getElementById("classList")
-const proficienciesOne = document.getElementById("proficienciesOne")
-const proficienciesTwo = document.getElementById("proficienciesTwo")
+const hitDie = document.getElementById("hitDie")
+const savingThrow1 = document.getElementById("savingThrow1")
+const savingThrow2 = document.getElementById("savingThrow2")
 const baseURL = "https://cors-anywhere.herokuapp.com/https://dnd5eapi.co/api/"
-const startEquip1 = document.getElementById("startEquip1")
-const startEquip2 = document.getElementById("startEquip2")
+
 
 /**
  * Fetches classes and populates select data
  */
-(function classFetch() {
+function classFetch() {
   loader(true)
   fetch(`${baseURL}classes`)
     .then(response => response.json())
@@ -44,10 +44,10 @@ const startEquip2 = document.getElementById("startEquip2")
     .catch(() => console.error());
   loader(false)
   phaseOne.classList.remove("hide")
-})();
+}
 
 
-
+classFetch()
 
 
 classId.addEventListener('click', () => {
@@ -66,13 +66,13 @@ function profFetch() {
     .then(profs => {
 
       let hit = profs.hit_die
-      document.getElementById("hitDie").value = (`${hit}`)
+      hitDie.value = (`${hit}`)
 
       let saveOne = profs.saving_throws[0].name
-      document.getElementById("savingThrow1").value = (`${saveOne}`)
+      savingThrow1.value = (`${saveOne}`)
 
       let saveTwo = profs.saving_throws[1].name
-      document.getElementById("savingThrow2").value = (`${saveTwo}`)
+      savingThrow2.value = (`${saveTwo}`)
 
       let profList = profs.proficiency_choices[0].from
       profList.forEach(profOf => {
@@ -85,7 +85,7 @@ function profFetch() {
         profOption.appendChild(profName)
         profOption.id = profOf.index
         profOption.classList.add("skill")
-        proficienciesOne.appendChild(profOption)
+        document.getElementById("proficienciesOne").appendChild(profOption)
 
       })
       profList.forEach(profOf => {
@@ -98,7 +98,7 @@ function profFetch() {
         profOption.appendChild(profName)
         profOption.id = profOf.index
         profOption.classList.add("skill")
-        proficienciesTwo.appendChild(profOption)
+        document.getElementById("proficienciesTwo").appendChild(profOption)
 
       })
     })
@@ -123,14 +123,14 @@ function equipFetch() {
     .then(equip => {
 
       let startEquipOne = equip.starting_equipment[0].item.name
-      startEquip1.value = (`${startEquipOne}`)
+      document.getElementById("startEquip1").value = (`${startEquipOne}`)
 
       let startEquipTwo = equip.starting_equipment[1].item.name
 
       if (startEquipTwo == "") {
-        startEquip2.value = (`Null`)
+        document.getElementById("startEquip2").value = (`Null`)
       } else {
-        startEquip2.value = (`${startEquipTwo}`)
+        document.getElementById("startEquip2").value = (`${startEquipTwo}`)
       }
 
       let equipChoice = equip.choice_1[1].from
