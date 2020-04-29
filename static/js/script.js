@@ -13,7 +13,7 @@ let baseURL = "https://cors-anywhere.herokuapp.com/https://dnd5eapi.co/api/"
 /**
  * Fetches classes and populates select data
  */
-function classFetch() {
+(function classFetch() {
   loader(true)
   fetch(`${baseURL}classes`)
     .then(response => response.json())
@@ -42,9 +42,9 @@ function classFetch() {
     .catch(() => console.error());
   loader(false)
   phaseOne.classList.remove("hide")
-}
+})();
 
-classFetch();
+
 
 classId.addEventListener('click', () => {
   id = classChoice.options[classChoice.selectedIndex].id;
