@@ -11,6 +11,9 @@ const savingThrow1 = document.getElementById("savingThrow1")
 const savingThrow2 = document.getElementById("savingThrow2")
 const proficienciesOne = document.getElementById("proficienciesOne")
 const proficienciesTwo = document.getElementById("proficienciesTwo")
+const startEquip1 = document.getElementById("startEquip1")
+const startEquip2 = document.getElementById("startEquip2")
+const equipmentChoice = document.getElementById("equipmentChoice")
 const baseURL = "https://cors-anywhere.herokuapp.com/https://dnd5eapi.co/api/"
 
 
@@ -48,9 +51,7 @@ function classFetch() {
   phaseOne.classList.remove("hide")
 }
 
-
 classFetch()
-
 
 classId.addEventListener('click', () => {
   id = classChoice.options[classChoice.selectedIndex].id;
@@ -125,14 +126,14 @@ function equipFetch() {
     .then(equip => {
 
       let startEquipOne = equip.starting_equipment[0].item.name
-      document.getElementById("startEquip1").value = (`${startEquipOne}`)
+      startEquip1.value = (`${startEquipOne}`)
 
       let startEquipTwo = equip.starting_equipment[1].item.name
 
       if (startEquipTwo == "") {
-        document.getElementById("startEquip2").value = (`Null`)
+        startEquip2.value = (`Null`)
       } else {
-        document.getElementById("startEquip2").value = (`${startEquipTwo}`)
+        startEquip2.value = (`${startEquipTwo}`)
       }
 
       let equipChoice = equip.choice_1[1].from
@@ -147,7 +148,7 @@ function equipFetch() {
         profOption.appendChild(profName)
         profOption.id = profOf.index
         profOption.classList.add("skill")
-        document.getElementById("equip").appendChild(profOption)
+        equipmentChoice.appendChild(profOption)
 
       })
     })
@@ -156,9 +157,6 @@ function equipFetch() {
   loader(false)
   phaseThree.classList.remove("hide")
 }
-
-
-
 
 function loader(loading) {
   if (loading) {
