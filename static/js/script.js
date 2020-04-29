@@ -9,6 +9,8 @@ const classesList = document.getElementById("classList")
 const hitDie = document.getElementById("hitDie")
 const savingThrow1 = document.getElementById("savingThrow1")
 const savingThrow2 = document.getElementById("savingThrow2")
+const proficienciesOne = document.getElementById("proficienciesOne")
+const proficienciesTwo = document.getElementById("proficienciesTwo")
 const baseURL = "https://cors-anywhere.herokuapp.com/https://dnd5eapi.co/api/"
 
 
@@ -85,7 +87,7 @@ function profFetch() {
         profOption.appendChild(profName)
         profOption.id = profOf.index
         profOption.classList.add("skill")
-        document.getElementById("proficienciesOne").appendChild(profOption)
+        proficienciesOne.appendChild(profOption)
 
       })
       profList.forEach(profOf => {
@@ -98,7 +100,7 @@ function profFetch() {
         profOption.appendChild(profName)
         profOption.id = profOf.index
         profOption.classList.add("skill")
-        document.getElementById("proficienciesTwo").appendChild(profOption)
+        proficienciesTwo.appendChild(profOption)
 
       })
     })
