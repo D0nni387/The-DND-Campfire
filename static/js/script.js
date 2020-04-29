@@ -5,10 +5,12 @@ const load = document.getElementById("loading");
 const phaseOne = document.getElementById("phaseOne")
 const phaseTwo = document.getElementById("phaseTwo")
 const phaseThree = document.getElementById("phaseThree")
-
-
-let baseURL = "https://cors-anywhere.herokuapp.com/https://dnd5eapi.co/api/"
-
+const classesList = document.getElementById("classList")
+const proficienciesOne = document.getElementById("proficienciesOne")
+const proficienciesTwo = document.getElementById("proficienciesTwo")
+const baseURL = "https://cors-anywhere.herokuapp.com/https://dnd5eapi.co/api/"
+const startEquip1 = document.getElementById("startEquip1")
+const startEquip2 = document.getElementById("startEquip2")
 
 /**
  * Fetches classes and populates select data
@@ -34,7 +36,7 @@ let baseURL = "https://cors-anywhere.herokuapp.com/https://dnd5eapi.co/api/"
         classOption.classList.add("class");
         className.id = i
         className.classList.add("classId")
-        document.getElementById("classList").appendChild(classOption);
+        classesList.appendChild(classOption);
         i++
       });
 
@@ -43,6 +45,8 @@ let baseURL = "https://cors-anywhere.herokuapp.com/https://dnd5eapi.co/api/"
   loader(false)
   phaseOne.classList.remove("hide")
 })();
+
+
 
 
 
@@ -81,7 +85,7 @@ function profFetch() {
         profOption.appendChild(profName)
         profOption.id = profOf.index
         profOption.classList.add("skill")
-        document.getElementById("proficienciesOne").appendChild(profOption)
+        proficienciesOne.appendChild(profOption)
 
       })
       profList.forEach(profOf => {
@@ -94,7 +98,7 @@ function profFetch() {
         profOption.appendChild(profName)
         profOption.id = profOf.index
         profOption.classList.add("skill")
-        document.getElementById("proficienciesTwo").appendChild(profOption)
+        proficienciesTwo.appendChild(profOption)
 
       })
     })
@@ -119,14 +123,14 @@ function equipFetch() {
     .then(equip => {
 
       let startEquipOne = equip.starting_equipment[0].item.name
-      document.getElementById("startEquip1").value = (`${startEquipOne}`)
+      startEquip1.value = (`${startEquipOne}`)
 
       let startEquipTwo = equip.starting_equipment[1].item.name
 
       if (startEquipTwo == "") {
-        document.getElementById("startEquip2").value = (`Null`)
+        startEquip2.value = (`Null`)
       } else {
-        document.getElementById("startEquip2").value = (`${startEquipTwo}`)
+        startEquip2.value = (`${startEquipTwo}`)
       }
 
       let equipChoice = equip.choice_1[1].from
