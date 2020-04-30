@@ -1,26 +1,35 @@
+const baseURL = "https://cors-anywhere.herokuapp.com/https://dnd5eapi.co/api/";
+const proficienciesOne = document.getElementById("proficienciesOne");
+const proficienciesTwo = document.getElementById("proficienciesTwo");
+const equipmentChoice = document.getElementById("equipmentChoice");
+const savingThrow1 = document.getElementById("savingThrow1");
+const savingThrow2 = document.getElementById("savingThrow2");
+const startEquip1 = document.getElementById("startEquip1");
+const startEquip2 = document.getElementById("startEquip2");
+const phaseThree = document.getElementById("phaseThree");
+const classesList = document.getElementById("classList");
+const classChoice = document.getElementById("classList");
+const progress = document.getElementById("progressTwo");
+const phaseOne = document.getElementById("phaseOne");
+const phaseTwo = document.getElementById("phaseTwo");
 const classId = document.getElementById("progress");
-const progress = document.getElementById("progressTwo")
-const classChoice = document.getElementById("classList")
 const load = document.getElementById("loading");
-const phaseOne = document.getElementById("phaseOne")
-const phaseTwo = document.getElementById("phaseTwo")
-const phaseThree = document.getElementById("phaseThree")
-const classesList = document.getElementById("classList")
-const hitDie = document.getElementById("hitDie")
-const savingThrow1 = document.getElementById("savingThrow1")
-const savingThrow2 = document.getElementById("savingThrow2")
-const proficienciesOne = document.getElementById("proficienciesOne")
-const proficienciesTwo = document.getElementById("proficienciesTwo")
-const startEquip1 = document.getElementById("startEquip1")
-const startEquip2 = document.getElementById("startEquip2")
-const equipmentChoice = document.getElementById("equipmentChoice")
-const baseURL = "https://cors-anywhere.herokuapp.com/https://dnd5eapi.co/api/"
+const hitDie = document.getElementById("hitDie");
+
+
+
+
+
+
+
+
+
 
 
 /**
  * Fetches classes and populates select data
  */
-(function classFetch() {
+function classFetch() {
   loader(true)
   fetch(`${baseURL}classes`)
     .then(response => response.json())
@@ -34,7 +43,6 @@ const baseURL = "https://cors-anywhere.herokuapp.com/https://dnd5eapi.co/api/"
         let className = document.createElement("p");
         let name = document.createTextNode(classOp.name);
 
-
         className.appendChild(name);
         classOption.appendChild(className);
         classOption.id = classOp.index;
@@ -44,13 +52,13 @@ const baseURL = "https://cors-anywhere.herokuapp.com/https://dnd5eapi.co/api/"
         classesList.appendChild(classOption);
         i++
       });
-
     })
     .catch(() => console.error());
   loader(false)
   phaseOne.classList.remove("hide")
-})();
+}
 
+classFetch()
 
 classId.addEventListener('click', () => {
   id = classChoice.options[classChoice.selectedIndex].id;
@@ -77,28 +85,27 @@ function profFetch() {
       savingThrow2.value = (`${saveTwo}`)
 
       let profList = profs.proficiency_choices[0].from
-      profList.forEach(profOf => {
+      profList.forEach(item => {
         let profOption = document.createElement("option");
         let profName = document.createElement("p");
-        let name = document.createTextNode(profOf.name)
-
+        let name = document.createTextNode(item.name)
 
         profName.appendChild(name)
         profOption.appendChild(profName)
-        profOption.id = profOf.index
+        profOption.id = item.index
         profOption.classList.add("skill")
         proficienciesOne.appendChild(profOption)
 
       })
-      profList.forEach(profOf => {
+      profList.forEach(item => {
         let profOption = document.createElement("option");
         let profName = document.createElement("p");
-        let name = document.createTextNode(profOf.name)
+        let name = document.createTextNode(item.name)
 
 
         profName.appendChild(name)
         profOption.appendChild(profName)
-        profOption.id = profOf.index
+        profOption.id = item.index
         profOption.classList.add("skill")
         proficienciesTwo.appendChild(profOption)
 
