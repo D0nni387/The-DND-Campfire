@@ -66,3 +66,22 @@ body {
     transition: ease-in-out;
     transition-duration: 1s;
 }
+
+.navbar-stick {
+    display: flex;
+    top: 0px;
+    left: 0px;
+    position: sticky;
+    z-index: 999999;
+}
+
+.navbar-collapse {
+    justify-content: center;
+}
+
+.navbar-dark,
+.navbar-nav:hover,
+.nav-link:hover {
+    color: #777777;
+    transition-duration: .5s;
+}
