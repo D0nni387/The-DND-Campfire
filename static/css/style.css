@@ -79,9 +79,7 @@ body {
     justify-content: center;
 }
 
-.navbar-dark,
-.navbar-nav:hover,
-.nav-link:hover {
-    color: #777777;
-    transition-duration: .5s;
+.navbar-dark .navbar-nav .nav-link {
+    color: #e2e2e2;
 }
+
