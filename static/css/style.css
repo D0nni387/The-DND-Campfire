@@ -54,13 +54,14 @@ body {
     text-align: center;
 }
 
-.social {
+.social-links {
+    color: #CFB53B;
     font-size: 3rem;
     padding-right: 1rem;
     text-align: center;
 }
 
-.social:hover {
+.social-links:hover {
     color:#e51111;
     transition: ease-in-out;
     transition-duration: 1s;
