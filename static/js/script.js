@@ -17,15 +17,6 @@ const load = document.getElementById("loading");
 const hitDie = document.getElementById("hitDie");
 
 
-
-
-
-
-
-
-
-
-
 /**
  * Fetches classes and populates select data
  */
