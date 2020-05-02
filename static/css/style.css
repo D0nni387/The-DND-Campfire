@@ -59,3 +59,9 @@ body {
     padding-right: 1rem;
     text-align: center;
 }
+
+.social:hover {
+    color:#e51111;
+    transition: ease-in-out;
+    transition-duration: 1s;
+}
