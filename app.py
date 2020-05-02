@@ -99,6 +99,9 @@ def register():
     
 
     if form.validate_on_submit():
+        user.insert_one(request.form.to_dict())
+
+        return redirect(url_for('get_party'))
         
 
     return render_template("pages/register.html", form=form)
