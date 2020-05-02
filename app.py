@@ -6,6 +6,7 @@ from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Email, Length
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 
@@ -84,7 +85,7 @@ def login():
     """
     form = LoginForm()
 
-    if form.validate_on_submit():
+    if form.validate_on_submit():    
         return '<h1>' + form.username.data + ' ' + form.password.data + '</h1>'
 
     return render_template("pages/login.html", form=form)
@@ -96,14 +97,13 @@ def register():
     """
     form = RegisterForm()
     user = MONGO.db.users
-    
-
     if form.validate_on_submit():
-        user.insert_one(request.form.to_dict())
+        user_doc = {'username': request.form.get('username'),
+                    'password': request.form.get('password'),
+                    'email': request.form.get('email')}
+        user.insert_one(user_doc)
 
         return redirect(url_for('get_party'))
-        
-
     return render_template("pages/register.html", form=form)
 
 
