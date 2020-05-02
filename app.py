@@ -11,7 +11,7 @@ from wtforms.validators import InputRequired, Email, Length
 
 APP = Flask(__name__)
 APP.config['SECRET_KEY'] = 'Thisisasecretshhh'
-APP.config['MONGO_URI'] = 'mongodb+srv://d0nni3:Deadman87@campfire-sppig.azure.mongodb.net/Campfire?retryWrites=true&w=majorityCopy'
+APP.config['MONGO_URI'] = 'mongodb+srv://d0nni3:Deadman87@campfire-sppig.azure.mongodb.net/Campfire?retryWrites=true&w=majority'
 BOOTSTRAP = Bootstrap(APP)
 MONGO = PyMongo(APP)
 
