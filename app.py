@@ -51,17 +51,21 @@ def insert_character():
     """
     Passes new character form data to JSON
     """
-    return jsonify({'name':request.form.get('name'),
-                    'class':request.form.get('class_list'),
-                    'hit_die':request.form.get('hit_die'),
-                    'saving_throw1':request.form.get('saving_throw1'),
-                    'saving_throw2':request.form.get('saving_throw2'),
-                    'proficiency1':request.form.get('proficiency1'),
-                    'proficiency2':request.form.get('proficiency2'),
-                    'start_equipment_choice':request.form.get('start_equipment_choice'),
-                    'start_equip1':request.form.get('start_equip1'),
-                    'start_equip2':request.form.get('start_equip2')})
-
+    characters = MONGO.db.character
+    new_character = {
+        'name':request.form.get('name'),
+        'class':request.form.get('class'),
+        'hit_die':request.form.get('hit_die'),
+        'saving_throw1':request.form.get('saving_throw1'),
+        'saving_throw2':request.form.get('saving_throw2'),
+        'proficiency1':request.form.get('proficiency1'),
+        'proficiency2':request.form.get('proficiency2'),
+        'start_equipment_choice':request.form.get('start_equipment_choice'),
+        'start_equip1':request.form.get('start_equip1'),
+        'start_equip2':request.form.get('start_equip2')
+    }
+    characters.insert_one(new_character)
+    return redirect(url_for('get_party'))
 
 @APP.route('/party')
 def get_party():
