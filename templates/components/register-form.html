@@ -1,26 +1,14 @@
 {% block register %}
 
-<form method="POST">
-    <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" id="username" placeholder="Username">
-    </div>
+<form class="form-signin" method="POST" action="/register">
+    
 
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Password">
-    </div>
+   
 
-    <div class="form-group">
-        <label for="passwordRepeat">Confirm Password</label>
-        <input type="password" class="form-control" id="passwordRepeat" placeholder="Repeat Password">
-    </div>
-
-    <div class="form-group">
-        <label for="emailaddress">Email address</label>
-        <input type="email" class="form-control" id="emailaddress" aria-describedby="emailHelp" placeholder="Email Address"
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
+   {{ form.hidden_tag() }}
+   {{ wtf.form_field(form.username) }}
+   {{ wtf.form_field(form.email) }}
+   {{ wtf.form_field(form.password) }}
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
