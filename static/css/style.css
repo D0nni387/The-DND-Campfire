@@ -50,4 +50,12 @@ body {
     }
 }
 
+.footer {
+    text-align: center;
+}
 
+.social {
+    font-size: 3rem;
+    padding-right: 1rem;
+    text-align: center;
+}
