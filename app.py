@@ -17,6 +17,16 @@ MONGO = PyMongo(APP)
 
 
 
+class LoginForm(FlaskForm):
+    username = StringField('username', validators=[InputRequired(), Length(min=4, max=20)])
+    password = PasswordField('password', validators=[InputRequired(), Length(min=6, max=80)])
+    remember = BooleanField('remember me')
+
+class RegisterForm(FlaskForm):
+    email = StringField('email', validators=[InputRequired(), Email(message='Invalid Email Address'), Length(max=40)])
+    username = StringField('username', validators=[InputRequired(), Length(min=4, max=20)])
+    password = PasswordField('password', validators=[InputRequired(), Length(min=6, max=80)])
+
 @APP.route('/')
 def get_intro():
     """
@@ -86,9 +96,13 @@ def register():
     Returns Register Page
     """
     form = RegisterForm()
+    user = MONGO.db.users
+    
 
     if form.validate_on_submit():
-        return '<h1>' + form.username.data + ' ' + form.email.data + ' ' + form.password.data + ' ' + '</h1>'
+        user.insert_one(request.form.to_dict())
+
+        return redirect(url_for('get_party'))
 
     return render_template("pages/register.html", form=form)
 
