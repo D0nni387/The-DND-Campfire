@@ -16,7 +16,6 @@ BOOTSTRAP = Bootstrap(APP)
 MONGO = PyMongo(APP)
 
 
-
 class LoginForm(FlaskForm):
     username = StringField('username', validators=[InputRequired(), Length(min=4, max=20)])
     password = PasswordField('password', validators=[InputRequired(), Length(min=6, max=80)])
@@ -100,9 +99,7 @@ def register():
     
 
     if form.validate_on_submit():
-        user.insert_one(request.form.to_dict())
-
-        return redirect(url_for('get_party'))
+        
 
     return render_template("pages/register.html", form=form)
 
