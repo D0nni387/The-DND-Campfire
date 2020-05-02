@@ -1,9 +1,20 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for, jsonify, session
-import pymongo
+from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from flask_bootstrap import Bootstrap
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, BooleanField
+from wtforms.validators import InputRequired, Email, Length
+
+
 
 APP = Flask(__name__)
+APP.config['SECRET_KEY'] = 'Thisisasecretshhh'
+APP.config['MONGO_URI'] = 'mongodb+srv://d0nni3:Deadman87@campfire-sppig.azure.mongodb.net/Campfire?retryWrites=true&w=majorityCopy'
+BOOTSTRAP = Bootstrap(APP)
+MONGO = PyMongo(APP)
+
 
 
 @APP.route('/')
@@ -57,19 +68,29 @@ def my_account():
     """
     return render_template("pages/account.html")
 
-@APP.route('/login')
+@APP.route('/login', methods=['GET', 'POST'])
 def login():
     """
     Returns Login Page
     """
-    return render_template("pages/login.html")
+    form = LoginForm()
 
-@APP.route('/register')
+    if form.validate_on_submit():
+        return '<h1>' + form.username.data + ' ' + form.password.data + '</h1>'
+
+    return render_template("pages/login.html", form=form)
+
+@APP.route('/register', methods=['GET', 'POST'])
 def register():
     """
     Returns Register Page
     """
-    return render_template("pages/register.html")
+    form = RegisterForm()
+
+    if form.validate_on_submit():
+        return '<h1>' + form.username.data + ' ' + form.email.data + ' ' + form.password.data + ' ' + '</h1>'
+
+    return render_template("pages/register.html", form=form)
 
 
 if __name__ == '__main__':
