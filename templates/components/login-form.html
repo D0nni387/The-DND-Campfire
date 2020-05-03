@@ -1,6 +1,6 @@
 {% block login %}
 
-<form class="form-signin" method="POST" action="/login">
+<form class="form-signin" method="POST" action="{{ url_for('login')}}">
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp">
