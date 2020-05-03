@@ -13,10 +13,11 @@ const progress = document.getElementById("progressTwo");
 const phaseOne = document.getElementById("phaseOne");
 const phaseTwo = document.getElementById("phaseTwo");
 const classId = document.getElementById("progress");
-const load = document.getElementById("loading");
-const hitDie = document.getElementById("hitDie");
-const begin = document.getElementById("start");
 const initial = document.getElementById("phase");
+const hitDie = document.getElementById("hitDie");
+const load = document.getElementById("loading");
+const begin = document.getElementById("start");
+
 
 begin.addEventListener('click', () => {
   initial.classList.add("hide")
@@ -108,7 +109,6 @@ function profFetch() {
 
       })
     })
-
   phaseTwo.classList.remove("hide")
   loader(false)
 }
@@ -133,7 +133,7 @@ function equipFetch() {
 
       let startEquipTwo = equip.starting_equipment[1].item.name
 
-      if (startEquipTwo == "") {
+      if (startEquipTwo == " ") {
         startEquip2.value = (`Null`)
       } else {
         startEquip2.value = (`${startEquipTwo}`)
@@ -146,7 +146,6 @@ function equipFetch() {
         let profName = document.createElement("p");
         let name = document.createTextNode(profOf.item.name)
 
-
         profName.appendChild(name)
         profOption.appendChild(profName)
         profOption.id = profOf.index
@@ -155,8 +154,6 @@ function equipFetch() {
 
       })
     })
-
-
   loader(false)
   phaseThree.classList.remove("hide")
 }
