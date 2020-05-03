@@ -15,7 +15,13 @@ const phaseTwo = document.getElementById("phaseTwo");
 const classId = document.getElementById("progress");
 const load = document.getElementById("loading");
 const hitDie = document.getElementById("hitDie");
+const begin = document.getElementById("start");
+const initial = document.getElementById("phase");
 
+begin.addEventListener('click', () => {
+  initial.classList.add("hide")
+  classFetch();
+})
 
 /**
  * Fetches classes and populates select data
@@ -49,7 +55,7 @@ function classFetch() {
   phaseOne.classList.remove("hide")
 }
 
-classFetch()
+
 
 classId.addEventListener('click', () => {
   id = classChoice.options[classChoice.selectedIndex].id;
