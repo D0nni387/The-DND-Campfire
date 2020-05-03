@@ -1,13 +1,26 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
-<div class="container-fluid" >
+<div class="container-fluid">
     <form action="{{ url_for('insert_character') }}" method="POST" class="col-12">
+
+
         <div class="container">
             <div class="row loader">
-              <div id="loading" class=""></div>
+                <div id="loading" class="hide"></div>
             </div>
-          </div>
-        
+        </div>
+
+        <div class="container" id="phase">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Choose an Avatar</h2>
+                </div>
+                <div class="col-12">
+                    <a class="btn" id="start" href="#">Let's Begin</a>
+                </div>
+            </div>
+        </div>
+
         <div class="container hide" id="phaseOne">
             <div class="form-group">
                 <label for="name">Character Name</label>
@@ -27,10 +40,11 @@
 
         <div class="container hide" id="phaseTwo">
             <label for="hitDie">Hit Die</label>
-            <input class="form-control" name="hit_die" type="text" id="hitDie" value="default" readonly>
+            <input class="form-control no-input" name="hit_die" type="text" id="hitDie" value="default" readonly>
 
             <label for="savingThrow1">Saving Throw</label>
-            <input class="form-control" name="saving_throw1" type="text" id="savingThrow1" value="default" readonly>
+            <input class="form-control no-input" name="saving_throw1" type="text" id="savingThrow1" value="default"
+                readonly>
 
             <label for="savingThrow2">Saving Throw</label>
             <input class="form-control" name="saving_throw2" type="text" id="savingThrow2" value="default" readonly>
