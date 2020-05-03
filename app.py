@@ -34,7 +34,7 @@ def create_character():
 def insert_character():
 
     """
-    Passes new character form data to JSON
+    Passes new character form data database
     """
     characters = MONGO.db.character
     new_character = {
@@ -70,7 +70,7 @@ def my_account():
 @APP.route('/login', methods=['GET', 'POST'])
 def login():
     """
-    Returns Login Page
+    Returns Login Page and allows user to log in via form, checks in the database to ensure username and password match ** not hashed for now **
     """
     user = MONGO.db.users
     login_user = user.find_one({'name' : request.form.get('username')})
@@ -85,7 +85,7 @@ def login():
 @APP.route('/register', methods=['GET', 'POST'])
 def register():
     """
-    Returns Register Page
+    Returns Register Page, allows the user to create a new account, checks if the username is already taken to prevent duplication
     """
     if request.method == 'POST':
         user = MONGO.db.users
@@ -102,4 +102,4 @@ def register():
 
 
 if __name__ == '__main__':
-    APP.run(host=os.environ.get('IP'), port=os.environ.get('PORT'),debug=True)
+    APP.run(host=os.environ.get('IP'), port=os.environ.get('PORT'), debug=True)
