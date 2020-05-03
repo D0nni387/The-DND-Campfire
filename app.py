@@ -2,8 +2,6 @@ import os
 from flask import Flask, render_template, redirect, request, url_for, jsonify, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from werkzeug.security import generate_password_hash, check_password_hash
-
 
 
 APP = Flask(__name__)
@@ -12,6 +10,7 @@ APP = Flask(__name__)
 APP.config['SECRET_KEY'] = 'Thisisasecretshhh'
 APP.config['MONGO_URI'] = 'mongodb+srv://d0nni3:Deadman87@campfire-sppig.azure.mongodb.net/Campfire?retryWrites=true&w=majority'
 MONGO = PyMongo(APP)
+
 
 @APP.route('/')
 def get_intro():
@@ -68,33 +67,35 @@ def my_account():
     """
     return render_template("pages/account.html")
 
-@APP.route('/login', methods=['POST'])
+@APP.route('/login', methods=['GET', 'POST'])
 def login():
     """
     Returns Login Page
     """
-    
+    user = MONGO.db.users
+    login_user = user.find_one({'name' : request.form.get('username')})
 
-    if 'username' in session:
-        return 'Welcome back' + session['username']
+    if login_user:
+        if request.form['password'] == login_user['password']:
+            session['username'] = request.form['username']     
+            return redirect(url_for('get_intro'))
+        return 'invalid username/password'
 
-
-    return render_template("pages/login.html")
+        
+    return render_template("pages/login.html")  
 
 @APP.route('/register', methods=['GET', 'POST'])
 def register():
     """
     Returns Register Page
     """
-    
     if request.method == 'POST':
         user = MONGO.db.users
         active_user = user.find_one({'name' : request.form.get('username')})
 
         if active_user is None:
-            hashpass = generate_password_hash(request.form.get('password'), 'sha256')
-            user.insert({'name' : request.form.get('username'), 'password' : hashpass, 'email' : request.form.get('email')})
-            session['username'] = request.form.get('username')
+            user.insert({'name' : request.form['username'], 'password' : request.form['password'], 'email' : request.form['email']})
+            session['username'] = request.form['username']
             return redirect(url_for('get_intro'))
 
         return 'That username exists'
