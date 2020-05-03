@@ -39,7 +39,7 @@ def insert_character():
     characters = MONGO.db.character
     new_character = {
         'name':request.form.get('name'),
-        'class':request.form.get('class'),
+        'class':request.form.get('class_list'),
         'hit_die':request.form.get('hit_die'),
         'saving_throw1':request.form.get('saving_throw1'),
         'saving_throw2':request.form.get('saving_throw2'),
