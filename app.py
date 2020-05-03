@@ -77,12 +77,10 @@ def login():
 
     if login_user:
         if request.form['password'] == login_user['password']:
-            session['username'] = request.form['username']     
+            session['username'] = request.form['username']
             return redirect(url_for('get_intro'))
         return 'invalid username/password'
-
-        
-    return render_template("pages/login.html")  
+    return render_template("pages/login.html")
 
 @APP.route('/register', methods=['GET', 'POST'])
 def register():
