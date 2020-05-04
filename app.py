@@ -7,8 +7,8 @@ from bson.objectid import ObjectId
 APP = Flask(__name__)
 
 """ To Debug Server Issue """
-APP.config['SECRET_KEY'] = 'Thisisasecretshhh'
-APP.config['MONGO_URI'] = 'mongodb+srv://d0nni3:Deadman87@campfire-sppig.azure.mongodb.net/Campfire?retryWrites=true&w=majority'
+APP.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+APP.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 MONGO = PyMongo(APP)
 
 
@@ -104,4 +104,4 @@ def register():
 
 
 if __name__ == '__main__':
-    APP.run(host=os.environ.get('IP'), port=os.environ.get('PORT'), debug=True)
+    APP.run(host=os.environ.get('IP'), port=os.environ.get('PORT'), debug=os.environ.get('DEBUG'))
