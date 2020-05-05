@@ -6,7 +6,6 @@ from bson.objectid import ObjectId
 
 APP = Flask(__name__)
 
-""" To Debug Server Issue """
 APP.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 APP.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 MONGO = PyMongo(APP)
@@ -29,8 +28,22 @@ def create_character():
 
     return render_template("pages/create.html")
 
+@APP.route('/party')
+def get_party():
+    """
+    Returns Party Page
+    """
+    return render_template("pages/party.html")
 
-@APP.route('/character/insert_character', methods=['POST'])
+
+@APP.route('/account')
+def my_account():
+    """
+    Returns Account Page
+    """
+    return render_template("pages/account.html")
+
+@APP.route('/character/create', methods=['POST'])
 def insert_character():
 
     """
@@ -38,7 +51,7 @@ def insert_character():
     """
     characters = MONGO.db.character
     new_character = {
-        'user' : session['username'],
+        'user' : session('username'),
         'gender' :request.form.get('gender'),
         'name':request.form.get('name'),
         'class':request.form.get('class_list'),
@@ -54,20 +67,7 @@ def insert_character():
     characters.insert_one(new_character)
     return redirect(url_for('get_party'))
 
-@APP.route('/party')
-def get_party():
-    """
-    Returns Party Page
-    """
-    return render_template("pages/party.html")
 
-
-@APP.route('/account')
-def my_account():
-    """
-    Returns Account Page
-    """
-    return render_template("pages/account.html")
 
 @APP.route('/login', methods=['GET', 'POST'])
 def login():
@@ -96,7 +96,7 @@ def register():
         if active_user is None:
             user.insert({'name' : request.form['username'], 'password' : request.form['password'], 'email' : request.form['email']})
             session['username'] = request.form['username']
-            return redirect(url_for('get_intro'))
+            return redirect(url_for('login'))
 
         return 'That username exists'
 
