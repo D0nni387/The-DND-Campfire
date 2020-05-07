@@ -51,7 +51,7 @@ def insert_character():
     """
     characters = MONGO.db.character
     new_character = {
-        'user' : session('username'),
+        'userID' : session['username'],
         'gender' :request.form.get('gender'),
         'name':request.form.get('name'),
         'class':request.form.get('class_list'),
