@@ -24,6 +24,21 @@ begin.addEventListener('click', () => {
   classFetch();
 })
 
+function selectList(profList) {
+  profList.forEach(item => {
+    let profOption = document.createElement("option");
+    let profName = document.createElement("p");
+    let name = document.createTextNode(item.name)
+
+
+    profName.appendChild(name)
+    profOption.appendChild(profName)
+    profOption.id = item.index
+    profOption.classList.add("skill")
+    proficienciesTwo.appendChild(profOption)
+  })
+}
+
 /**
  * Fetches classes and populates select data
  */
@@ -95,19 +110,7 @@ function profFetch() {
         proficienciesOne.appendChild(profOption)
 
       })
-      profList.forEach(item => {
-        let profOption = document.createElement("option");
-        let profName = document.createElement("p");
-        let name = document.createTextNode(item.name)
-
-
-        profName.appendChild(name)
-        profOption.appendChild(profName)
-        profOption.id = item.index
-        profOption.classList.add("skill")
-        proficienciesTwo.appendChild(profOption)
-
-      })
+      selectList(profList)
     })
   phaseTwo.classList.remove("hide")
   loader(false)
@@ -141,18 +144,7 @@ function equipFetch() {
 
       let equipChoice = equip.choice_1[1].from
       console.log(equipChoice)
-      equipChoice.forEach(profOf => {
-        let profOption = document.createElement("option");
-        let profName = document.createElement("p");
-        let name = document.createTextNode(profOf.item.name)
 
-        profName.appendChild(name)
-        profOption.appendChild(profName)
-        profOption.id = profOf.index
-        profOption.classList.add("skill")
-        equipmentChoice.appendChild(profOption)
-
-      })
     })
   loader(false)
   phaseThree.classList.remove("hide")
