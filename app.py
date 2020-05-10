@@ -4,21 +4,19 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 
-
 APP = Flask(__name__)
 
 APP.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 APP.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 MONGO = PyMongo(APP)
 
-
 @APP.route('/')
 def get_intro():
     """
     Returns index page
     """
-    return render_template("pages/index.html")
 
+    return render_template("pages/index.html")
 
 @APP.route('/character/create')
 def create_character():
@@ -26,7 +24,6 @@ def create_character():
     """
     Returns Create Page
     """
-
     return render_template("pages/create.html")
 
 @APP.route('/party')
@@ -34,8 +31,8 @@ def get_party():
     """
     Returns Party Page
     """
+    
     return render_template("pages/party.html")
-
 
 @APP.route('/account')
 def my_account():
@@ -69,14 +66,13 @@ def insert_character():
     return redirect(url_for('get_party'))
 
 
-
 @APP.route('/login', methods=['GET', 'POST'])
 def login():
     """
     Returns Login Page and allows user to log in via form, checks in the database to ensure username and password match ** not hashed for now **
     """
     user = MONGO.db.users
-    login_user = user.find_one({'name' : request.form.get('username')})   
+    login_user = user.find_one({'name' : request.form.get('username')})
     if login_user:
         if (check_password_hash(login_user['password'], request.form['password']) == True):
             session['username'] = request.form['username']
