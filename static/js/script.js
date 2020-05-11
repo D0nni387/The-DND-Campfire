@@ -24,19 +24,32 @@ begin.addEventListener('click', () => {
   classFetch();
 })
 
-function selectList(profList) {
-  profList.forEach(item => {
-    let profOption = document.createElement("option");
-    let profName = document.createElement("p");
-    let name = document.createTextNode(item.name)
+function selectList(profList, target, naming) {
+  if (naming) {
+    profList.forEach(item => {
+      let profOption = document.createElement("option");
+      let profName = document.createElement("p");
+      let name = document.createTextNode(item.name)
 
+      profName.appendChild(name)
+      profOption.appendChild(profName)
+      profOption.id = item.index
+      profOption.classList.add("skill")
+      target.appendChild(profOption)
+    })
+  } else {
+    profList.forEach(item => {
+      let profOption = document.createElement("option");
+      let profName = document.createElement("p");
+      let name = document.createTextNode(item.item.name)
 
-    profName.appendChild(name)
-    profOption.appendChild(profName)
-    profOption.id = item.index
-    profOption.classList.add("skill")
-    proficienciesTwo.appendChild(profOption)
-  })
+      profName.appendChild(name)
+      profOption.appendChild(profName)
+      profOption.id = item.index
+      profOption.classList.add("skill")
+      target.appendChild(profOption)
+    })
+  }
 }
 
 /**
@@ -98,20 +111,12 @@ function profFetch() {
       savingThrow2.value = (`${saveTwo}`)
 
       let profList = profs.proficiency_choices[0].from
-      profList.forEach(item => {
-        let profOption = document.createElement("option");
-        let profName = document.createElement("p");
-        let name = document.createTextNode(item.name)
+      selectList(profList, proficienciesOne, true)
+      selectList(profList, proficienciesTwo, true)
 
-        profName.appendChild(name)
-        profOption.appendChild(profName)
-        profOption.id = item.index
-        profOption.classList.add("skill")
-        proficienciesOne.appendChild(profOption)
-
-      })
-      selectList(profList)
     })
+
+
   phaseTwo.classList.remove("hide")
   loader(false)
 }
@@ -134,16 +139,17 @@ function equipFetch() {
       let startEquipOne = equip.starting_equipment[0].item.name
       startEquip1.value = (`${startEquipOne}`)
 
-      let startEquipTwo = equip.starting_equipment[1].item.name
+       
 
-      if (startEquipTwo == " ") {
-        startEquip2.value = (`Null`)
-      } else {
+      if (equip.starting_equipment[1]) {
+        let startEquipTwo = equip.starting_equipment[1].item.name
         startEquip2.value = (`${startEquipTwo}`)
+      } else {
+        startEquip2.value = (`Null`)
       }
+      let profList = equip.choice_1[1].from
+      selectList(profList, equipmentChoice, false)
 
-      let equipChoice = equip.choice_1[1].from
-      console.log(equipChoice)
 
     })
   loader(false)
