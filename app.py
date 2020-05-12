@@ -20,7 +20,6 @@ def get_intro():
 
 @APP.route('/character/create')
 def create_character():
-
     """
     Returns Create Page
     """
@@ -68,7 +67,6 @@ def logout():
 
 @APP.route('/character/create', methods=['POST'])
 def insert_character():
-
     """
     Passes new character form data database
     """
@@ -94,7 +92,8 @@ def insert_character():
 @APP.route('/login', methods=['GET', 'POST'])
 def login():
     """
-    Returns Login Page and allows user to log in via form, checks in the database to ensure username and password match ** not hashed for now **
+    Returns Login Page and allows user to log in via form,
+    checks in the database to ensure username and password match
     """
     user = MONGO.db.users
     login_user = user.find_one({'name' : request.form.get('username')})
@@ -108,14 +107,17 @@ def login():
 @APP.route('/register', methods=['GET', 'POST'])
 def register():
     """
-    Returns Register Page, allows the user to create a new account, checks if the username is already taken to prevent duplication
+    Returns Register Page, allows the user to create a new account,
+    checks if the username is already taken to prevent duplication
     """
     if request.method == 'POST':
         user = MONGO.db.users
         active_user = user.find_one({'name' : request.form.get('username')})
         password = generate_password_hash(request.form['password'], "sha256")
         if active_user is None:
-            user.insert({'name' : request.form['username'], 'password' : password, 'email' : request.form['email']})
+            user.insert({'name' : request.form['username'],
+                         'password' : password,
+                         'email' : request.form['email']})
             session['username'] = request.form['username']
             return redirect(url_for('login'))
 
