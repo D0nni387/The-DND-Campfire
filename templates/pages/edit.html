@@ -1,36 +1,52 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
-
-<div class="col-6">
-    <div class="card custom-card character">
-        <img class="card-img-top" src="/static/images/characters/male barbarian.jpg" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">{{character.name}}</h5>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            <div class="card custom-card character">
+                <img class="card-img-top" src="/static/images/characters/male barbarian.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{character.name}}</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <p class="card-titles">Gender</p>
+                    <li class="list-group-item">{{character.gender}}</li>
+                    <p class="card-titles">Class</p>
+                    <li class="list-group-item">{{character.class}}</li>
+                    <p class="card-titles">Hit Die</p>
+                    <li class="list-group-item">{{character.hit_die}}</li>
+                    <p class="card-titles">Saving Throws</p>
+                    <li class="list-group-item">{{character.saving_throw1}}</li>
+                    <li class="list-group-item">{{character.saving_throw2}}</li>
+                    <p class="card-titles">Proficiencies</p>
+                    <li class="list-group-item">{{character.proficiency1}}</li>
+                    <li class="list-group-item">{{character.proficiency2}}</li>
+                    <p class="card-titles">Starting Equipment</p>
+                    <li class="list-group-item">{{character.start_equipment_choice}}</li>
+                    <li class="list-group-item">{{character.start_equip1}}</li>
+                    <li class="list-group-item">{{character.start_equip2}}</li>
+                </ul>
+                <div class="card-body">
+                    <a href="{{url_for('edit_character', character_id=character._id)}}" class="card-link">Edit</a>
+                    <a href="{{url_for('delete_character', character_id=character._id)}}" class="card-link">Delete</a>
+                </div>
+            </div>
         </div>
-        <ul class="list-group list-group-flush">
-            <p class="card-titles">Gender</p>
-            <li class="list-group-item">{{character.gender}}</li>
-            <p class="card-titles">Class</p>
-            <li class="list-group-item">{{character.class}}</li>
-            <p class="card-titles">Hit Die</p>
-            <li class="list-group-item">{{character.hit_die}}</li>
-            <p class="card-titles">Saving Throws</p>
-            <li class="list-group-item">{{character.saving_throw1}}</li>
-            <li class="list-group-item">{{character.saving_throw2}}</li>
-            <p class="card-titles">Proficiencies</p>
-            <li class="list-group-item">{{character.proficiency1}}</li>
-            <li class="list-group-item">{{character.proficiency2}}</li>
-            <p class="card-titles">Starting Equipment</p>
-            <li class="list-group-item">{{character.start_equipment_choice}}</li>
-            <li class="list-group-item">{{character.start_equip1}}</li>
-            <li class="list-group-item">{{character.start_equip2}}</li>
-        </ul>
-        <div class="card-body">
-            <a href="{{url_for('edit_character', character_id=character._id)}}" class="card-link">Edit</a>
-            <a href="{{url_for('delete_character', character_id=character._id)}}" class="card-link">Delete</a>
+        <div class="col-6">
+            <form action="{{ url_for('update_character', character_id=character._id)}}" method="POST" class="col-12">
+
+
+                <div class="container">
+                    <div class="row loader">
+                        <div id="loading" class="hide"></div>
+                    </div>
+                </div>
+
+                {% include 'components/create-form.html' %}
+                <button class="btn" type="submit" name="action">Apply</button>
+            </form>
         </div>
     </div>
 </div>
-
-
+<script src="{{url_for('static', filename='js/script.js')}}"></script>
 {% endblock %}
