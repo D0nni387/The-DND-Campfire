@@ -26,6 +26,12 @@ def create_character():
     """
     return render_template("pages/create.html")
 
+@APP.route('/character/edit/<character_id>')
+def edit_character(character_id):
+    this_character = MONGO.db.character.find_one({"_id": ObjectId(character_id)})
+
+    return render_template("pages/edit.html", character=this_character)
+
 @APP.route('/party')
 def get_party():
     """
@@ -34,7 +40,7 @@ def get_party():
     characters = MONGO.db.character
     party_char = characters.find({'userID': session['username']})
     party_list = [characters for characters in party_char]
-    return render_template("pages/party.html", party = party_list)
+    return render_template("pages/party.html", party=party_list)
 
 @APP.route('/account')
 def my_account():
