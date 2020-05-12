@@ -84,3 +84,15 @@ body {
     color: #e2e2e2;
 }
 
+.character {
+    text-align: center;
+    padding: 2rem;
+}
+
+.custom-card {
+    border: solid;
+    border-color: #CFB53B;
+    background-color: #272b30;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+}
