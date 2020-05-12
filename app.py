@@ -32,6 +32,11 @@ def edit_character(character_id):
 
     return render_template("pages/edit.html", character=this_character)
 
+@APP.route('/character/delete/<character_id>')
+def delete_character(character_id):
+    this_character = MONGO.db.character.remove({"_id": ObjectId(character_id)})
+    return redirect(url_for('get_party'))
+
 @APP.route('/party')
 def get_party():
     """
