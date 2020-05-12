@@ -31,8 +31,10 @@ def get_party():
     """
     Returns Party Page
     """
-    
-    return render_template("pages/party.html")
+    characters = MONGO.db.character
+    party_char = characters.find({'userID': session['username']})
+    party_list = [characters for characters in party_char]
+    return render_template("pages/party.html", party = party_list)
 
 @APP.route('/account')
 def my_account():
