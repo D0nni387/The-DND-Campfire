@@ -34,6 +34,10 @@ def edit_character(character_id):
 
     return render_template("pages/edit.html", character=this_character)
 
+@APP.route('/character/amend', methods=['POST'])
+def amend_character():
+    return render_template("pages/index.html")
+
 @APP.route('/character/delete/<character_id>')
 def delete_character(character_id):
     """
