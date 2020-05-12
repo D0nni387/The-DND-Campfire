@@ -10,86 +10,8 @@
             </div>
         </div>
 
-        <div class="container" id="phase">
-            <div class="row">
-                <div class="col-12">
-                    <h2>Choose an Avatar</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <select class="form-control" id="gender" name="gender">
-                        <option>Male</option>
-                        <option>Female</option>
-                    </select>
-                </div>
-            </div>
-                <div class="col-12">
-                    <a class="btn" id="start" href="#">Let's Begin</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="container hide" id="phaseOne">
-            <div class="form-group">
-                <label for="name">Character Name</label>
-                <input class="form-control" type="text" placeholder="Character Name" name="name">
-            </div>
-
-            <div class="form-group">
-
-                <label for="classList">Select Your Class</label>
-                <select class="form-control" id="classList" name="class_list">
-
-                </select>
-            </div>
-            <a class="btn" id="progress" href="#">Next!</a>
-        </div>
-
-
-        <div class="container hide" id="phaseTwo">
-            <label for="hitDie">Hit Die</label>
-            <input class="form-control no-input" name="hit_die" type="text" id="hitDie" value="default" readonly>
-
-            <label for="savingThrow1">Saving Throw</label>
-            <input class="form-control no-input" name="saving_throw1" type="text" id="savingThrow1" value="default"
-                readonly>
-
-            <label for="savingThrow2">Saving Throw</label>
-            <input class="form-control" name="saving_throw2" type="text" id="savingThrow2" value="default" readonly>
-
-            <div class="form-group">
-                <label for="proficienciesOne">Select Your First Proficiency</label>
-                <select class="form-control" name="proficiency1" id="proficienciesOne">
-
-                </select>
-                <label for="proficienciesTwo">Select Your Second Proficiency</label>
-                <select class="form-control" name="proficiency2" id="proficienciesTwo">
-
-                </select>
-            </div>
-
-            <a class="btn" id="progressTwo" href="#">Next!</a>
-        </div>
-
-        <div class="container hide" id="phaseThree">
-            <div class="form-group">
-                <label for="start_equipment_choice">Select Your Starting Equipment</label>
-                <select class="form-control" name="start_equipment_choice" id="equipmentChoice">
-
-                </select>
-            </div>
-
-
-            <div class="div">
-                <label for="start_equip1">Starting Equipment</label>
-                <input class="form-control" name="start_equip1" type="text" id="startEquip1" value="" readonly>
-
-                <label for="start_equip2">Starting Equipment</label>
-                <input class="form-control" name="start_equip2" type="text" id="startEquip2" value="" readonly>
-            </div>
-            <button class="btn" type="submit" name="action">Add</button>
-        </div>
+        {% include 'components/create-form.html' %}
+        <button class="btn" type="submit" name="action">Add</button>
     </form>
 </div>
 
