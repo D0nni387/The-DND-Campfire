@@ -2,15 +2,18 @@ const baseURL = "https://cors-anywhere.herokuapp.com/https://dnd5eapi.co/api/";
 const proficienciesOne = document.getElementById("proficienciesOne");
 const proficienciesTwo = document.getElementById("proficienciesTwo");
 const equipmentChoice = document.getElementById("equipmentChoice");
+const editChoice = document.getElementById("editChoice")
 const savingThrow1 = document.getElementById("savingThrow1");
 const savingThrow2 = document.getElementById("savingThrow2");
 const startEquip1 = document.getElementById("startEquip1");
 const startEquip2 = document.getElementById("startEquip2");
 const confirmEdit = document.getElementById("confirmEdit");
+const editButton = document.getElementById("editButton");
 const confirmAdd = document.getElementById("confirmAdd");
 const phaseThree = document.getElementById("phaseThree");
 const classesList = document.getElementById("classList");
 const classChoice = document.getElementById("classList");
+const editForm = document.getElementById("editForm")
 const progress = document.getElementById("progressTwo");
 const phaseOne = document.getElementById("phaseOne");
 const phaseTwo = document.getElementById("phaseTwo");
@@ -20,12 +23,19 @@ const hitDie = document.getElementById("hitDie");
 const load = document.getElementById("loading");
 const begin = document.getElementById("start");
 
+
 let edit = false
 
 begin.addEventListener('click', () => {
   initial.classList.add("hide")
   classFetch();
 })
+
+editButton.addEventListener('click', () => {
+  editChoice.classList.add("hide")
+  editForm.classList.remove("hide")
+  edit = true
+} )
 
 function selectList(profList, target, naming) {
   if (naming) {
