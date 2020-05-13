@@ -6,6 +6,8 @@ const savingThrow1 = document.getElementById("savingThrow1");
 const savingThrow2 = document.getElementById("savingThrow2");
 const startEquip1 = document.getElementById("startEquip1");
 const startEquip2 = document.getElementById("startEquip2");
+const confirmEdit = document.getElementById("confirmEdit");
+const confirmAdd = document.getElementById("confirmAdd");
 const phaseThree = document.getElementById("phaseThree");
 const classesList = document.getElementById("classList");
 const classChoice = document.getElementById("classList");
@@ -18,6 +20,7 @@ const hitDie = document.getElementById("hitDie");
 const load = document.getElementById("loading");
 const begin = document.getElementById("start");
 
+let edit = false
 
 begin.addEventListener('click', () => {
   initial.classList.add("hide")
@@ -84,8 +87,6 @@ function classFetch() {
   phaseOne.classList.remove("hide")
 }
 
-
-
 classId.addEventListener('click', () => {
   id = classChoice.options[classChoice.selectedIndex].id;
   phaseOne.classList.add("hide")
@@ -113,10 +114,7 @@ function profFetch() {
       let profList = profs.proficiency_choices[0].from
       selectList(profList, proficienciesOne, true)
       selectList(profList, proficienciesTwo, true)
-
     })
-
-
   phaseTwo.classList.remove("hide")
   loader(false)
 }
@@ -139,21 +137,22 @@ function equipFetch() {
       let startEquipOne = equip.starting_equipment[0].item.name
       startEquip1.value = (`${startEquipOne}`)
 
-       
-
       if (equip.starting_equipment[1]) {
         let startEquipTwo = equip.starting_equipment[1].item.name
         startEquip2.value = (`${startEquipTwo}`)
       } else {
-        startEquip2.value = (`Null`)
+        startEquip2.value = (`No Secondary Equipment`)
       }
       let profList = equip.choice_1[1].from
       selectList(profList, equipmentChoice, false)
-
-
     })
   loader(false)
   phaseThree.classList.remove("hide")
+  if (edit == true) {
+    confirmEdit.classList.remove("hide")
+  } else {
+    confirmAdd.classList.remove("hide")
+  }
 }
 
 function loader(loading) {
