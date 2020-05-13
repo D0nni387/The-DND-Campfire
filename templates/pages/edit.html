@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row">
-        <div class="col-6">
+        <div class="col-sm-12 col-md-6">
             <div class="card custom-card character">
                 <img class="card-img-top" src="/static/images/characters/male barbarian.jpg" alt="Card image cap">
                 <div class="card-body">
@@ -26,25 +26,30 @@
                     <li class="list-group-item">{{character.start_equip1}}</li>
                     <li class="list-group-item">{{character.start_equip2}}</li>
                 </ul>
-                <div class="card-body">
-                    <a href="{{url_for('edit_character', character_id=character._id)}}" class="card-link">Edit</a>
-                    <a href="{{url_for('delete_character', character_id=character._id)}}" class="card-link">Delete</a>
-                </div>
+               
             </div>
         </div>
-        <div class="col-6">
-            <form action="{{ url_for('update_character', character_id=character._id)}}" method="POST" class="col-12">
-
-
-                <div class="container">
-                    <div class="row loader">
-                        <div id="loading" class="hide"></div>
-                    </div>
+        <div class="col-sm-12 col-md-6">
+            <div class="row">
+                <div class="col-12" id="editChoice">
+                    <a href="#" class="btn" id="editButton">Edit {{character.name}}</a>
+                    <a href="{{url_for('get_party')}}" class="btn">Return to Party Screen</a>
                 </div>
-                <div class="container-fluid">
-                    {% include 'components/create-form.html' %}
-                    <button class="btn" type="submit" name="action">Apply</button>
-            </form>
+                <form action="{{ url_for('update_character', character_id=character._id)}}" method="POST"
+                    class="col-12">
+
+
+                    <div class="container">
+                        <div class="row loader">
+                            <div id="loading" class="hide"></div>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid hide" id="editForm">
+                        {% include 'components/create-form.html' %}
+                        <button class="btn hide" type="submit" name="action" id="confirmEdit">Apply Changes</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
