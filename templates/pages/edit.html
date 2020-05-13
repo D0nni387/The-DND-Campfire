@@ -41,12 +41,13 @@
                         <div id="loading" class="hide"></div>
                     </div>
                 </div>
-
-                {% include 'components/create-form.html' %}
-                <button class="btn" type="submit" name="action">Apply</button>
+                <div class="container-fluid">
+                    {% include 'components/create-form.html' %}
+                    <button class="btn" type="submit" name="action">Apply</button>
             </form>
         </div>
     </div>
 </div>
+
 <script src="{{url_for('static', filename='js/script.js')}}"></script>
 {% endblock %}
