@@ -115,3 +115,11 @@ body {
 .bgcolor-main {
     background-color: #272b30
 }
+
+.head-align {
+    text-align: center;
+}
+
+.container-pad {
+    padding: 5rem 1rem;
+}
