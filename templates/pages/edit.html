@@ -2,9 +2,9 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-12 col-md-6">
+        <div class="col-sm-12 col-md-5">
             <div class="card custom-card character">
-                <img class="card-img-top" src="/static/images/characters/male barbarian.jpg" alt="Card image cap">
+                <img class="card-img-top card-image" src="/static/images/characters/{{character.gender}}-{{character.class}}.png" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">{{character.name}}</h5>
                 </div>
@@ -29,9 +29,9 @@
                
             </div>
         </div>
-        <div class="col-sm-12 col-md-6">
+        <div class="col-sm-12 col-md-7">
             <div class="row">
-                <div class="col-12" id="editChoice">
+                <div class="col-12 btn-format" id="editChoice">
                     <a href="#" class="btn" id="editButton">Edit {{character.name}}</a>
                     <a href="{{url_for('get_party')}}" class="btn">Return to Party Screen</a>
                 </div>
@@ -45,7 +45,7 @@
                         </div>
                     </div>
 
-                    <div class="container-fluid hide" id="editForm">
+                    <div class="container-fluid hide btn-format" id="editForm">
                         {% include 'components/create-form.html' %}
                         <button class="btn hide" type="submit" name="action" id="confirmEdit">Apply Changes</button>
                 </form>

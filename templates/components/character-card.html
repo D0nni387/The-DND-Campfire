@@ -2,9 +2,9 @@
 <div class="container-fluid">
   <div class="row">
     {% for characters in party %}
-    <div class="col-sm-12 col-md-4">
+    <div class="col-sm-12 col-md-6 col-lg-4">
       <div class="card custom-card character">
-        <img class="card-img-top" src="/static/images/characters/male barbarian.jpg" alt="Card image cap">
+        <img class="card-img-top card-image" src="/static/images/characters/{{characters.gender}}-{{characters.class}}.png" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">{{characters.name}}</h5>
         </div>
