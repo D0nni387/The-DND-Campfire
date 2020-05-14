@@ -95,10 +95,19 @@ body {
     background-color: #272b30;
     border-radius: 0.5rem;
     margin-top: 1rem;
-    padding: 1rem 8rem;
+    padding: 1rem;
 }
 
 .card-titles {
     background-color: #272b33;
     margin-bottom: 0;
+}
+
+.btn-format {
+    text-align: center;
+}
+
+.card-image {
+    width: 60%;
+    margin: auto;
 }
