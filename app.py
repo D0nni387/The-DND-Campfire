@@ -25,6 +25,29 @@ def create_character():
     """
     return render_template("pages/create.html")
 
+@APP.route('/account')
+def my_account():
+    """
+    Returns Account Page
+    """
+    return render_template("pages/account.html")
+
+@APP.route('/logout')
+def logout():
+    """Logs out the user and pops session"""
+    session.pop('username')
+    return render_template("pages/index.html")
+
+@APP.route('/party')
+def get_party():
+    """
+    Returns Party Page
+    """
+    characters = MONGO.db.character
+    party_char = characters.find({'userID': session['username']})
+    party_list = [characters for characters in party_char]
+    return render_template("pages/party.html", party=party_list)
+
 @APP.route('/character/edit/<character_id>')
 def edit_character(character_id):
     """
@@ -36,6 +59,9 @@ def edit_character(character_id):
 
 @APP.route('/character/update/<character_id>', methods=['POST'])
 def update_character(character_id):
+    """
+    Passed submitted edit for and ammends database for character_id
+    """
     characters = MONGO.db.character
     characters.update({'_id':ObjectId(character_id)}, {
         'userID' : session['username'],
@@ -59,29 +85,6 @@ def delete_character(character_id):
     """
     MONGO.db.character.remove({"_id": ObjectId(character_id)})
     return redirect(url_for('get_party'))
-
-@APP.route('/party')
-def get_party():
-    """
-    Returns Party Page
-    """
-    characters = MONGO.db.character
-    party_char = characters.find({'userID': session['username']})
-    party_list = [characters for characters in party_char]
-    return render_template("pages/party.html", party=party_list)
-
-@APP.route('/account')
-def my_account():
-    """
-    Returns Account Page
-    """
-    return render_template("pages/account.html")
-
-@APP.route('/logout')
-def logout():
-    """Logs out the user and pops session"""
-    session.pop('username')
-    return render_template("pages/index.html")
 
 @APP.route('/character/create', methods=['POST'])
 def insert_character():
@@ -116,7 +119,7 @@ def login():
     user = MONGO.db.users
     login_user = user.find_one({'name' : request.form.get('username')})
     if login_user:
-        if (check_password_hash(login_user['password'], request.form['password']) == True):
+        if check_password_hash(login_user['password'], request.form['password']):
             session['username'] = request.form['username']
             return redirect(url_for('get_intro'))
         return 'invalid username/password'
