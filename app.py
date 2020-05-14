@@ -30,7 +30,9 @@ def my_account():
     """
     Returns Account Page
     """
-    return render_template("pages/account.html")
+    users = MONGO.db.users
+    current_user = users.find_one({'name': session['username']})
+    return render_template("pages/account.html", user=current_user)
 
 @APP.route('/logout')
 def logout():
