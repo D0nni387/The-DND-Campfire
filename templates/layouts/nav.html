@@ -2,12 +2,12 @@
 
 {% if 'username' in session %}
 
-<nav class="navbar navbar-expand-lg navbar-dark navbar-stick">
+<nav class="navbar navbar-expand-lg navbar-dark navbar-stick bgcolor-main">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
     aria-controls="navbarNav" aria-expanded="false" aria-label="toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
+  <div class="collapse navbar-collapse bgcolor-main" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" href="{{url_for('get_intro')}}">Home</a>
@@ -32,12 +32,12 @@
 
 {% else %}
 
-<nav class="navbar navbar-expand-lg navbar-dark navbar-stick">
+<nav class="navbar navbar-expand-lg navbar-dark navbar-stick bgcolor-main">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
     aria-controls="navbarNav" aria-expanded="false" aria-label="toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
+  <div class="collapse navbar-collapse bgcolor-main" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" href="{{url_for('get_intro')}}">Home</a>
