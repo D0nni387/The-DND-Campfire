@@ -37,7 +37,7 @@ editButton.addEventListener('click', () => {
   edit = true
 } )
 
-function selectList(profList, target, naming) {
+const selectList = (profList, target, naming) => {
   if (naming) {
     profList.forEach(item => {
       let profOption = document.createElement("option");
@@ -68,7 +68,7 @@ function selectList(profList, target, naming) {
 /**
  * Fetches classes and populates select data
  */
-function classFetch() {
+const classFetch = () => {
   loader(true)
   fetch(`${baseURL}classes`)
     .then(response => response.json())
@@ -106,7 +106,7 @@ classId.addEventListener('click', () => {
 /**
  * Fetches Proficiencies and populates select data
  */
-function profFetch() {
+const profFetch = () => {
   loader(true)
   fetch(`${baseURL}classes/${id}`)
     .then(response => response.json())
@@ -138,7 +138,7 @@ progress.addEventListener('click', () => {
 /**
  * Fetches starting-equipment and creates div elements
  */
-function equipFetch() {
+const equipFetch = () => {
   loader(true)
   fetch(`${baseURL}starting-equipment/${idNum}`)
     .then(response => response.json())
