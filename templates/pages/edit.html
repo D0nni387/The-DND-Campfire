@@ -32,8 +32,8 @@
         <div class="col-sm-12 col-md-7">
             <div class="row">
                 <div class="col-12 btn-format" id="editChoice">
-                    <a href="#" class="btn btn-format" id="editButton">Edit {{character.name}}</a>
-                    <a href="{{url_for('get_party')}}" class="btn btn-format">Return to Party Screen</a>
+                    <a href="#" class="btn btn-format" id="editButton" aria-label="Edit character">Edit {{character.name}}</a>
+                    <a href="{{url_for('get_party')}}" class="btn btn-format" aria-label="Party Screen">Return to Party Screen</a>
                 </div>
                 <form action="{{ url_for('update_character', character_id=character._id)}}" method="POST"
                     class="col-12">
