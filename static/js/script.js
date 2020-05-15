@@ -2,7 +2,6 @@ const baseURL = "https://cors-anywhere.herokuapp.com/https://dnd5eapi.co/api/";
 const proficienciesOne = document.getElementById("proficienciesOne");
 const proficienciesTwo = document.getElementById("proficienciesTwo");
 const equipmentChoice = document.getElementById("equipmentChoice");
-const editChoice = document.getElementById("editChoice")
 const savingThrow1 = document.getElementById("savingThrow1");
 const savingThrow2 = document.getElementById("savingThrow2");
 const startEquip1 = document.getElementById("startEquip1");
@@ -13,16 +12,16 @@ const confirmAdd = document.getElementById("confirmAdd");
 const phaseThree = document.getElementById("phaseThree");
 const classesList = document.getElementById("classList");
 const classChoice = document.getElementById("classList");
-const editForm = document.getElementById("editForm")
+const editChoice = document.getElementById("editChoice");
 const progress = document.getElementById("progressTwo");
 const phaseOne = document.getElementById("phaseOne");
 const phaseTwo = document.getElementById("phaseTwo");
+const editForm = document.getElementById("editForm");
 const classId = document.getElementById("progress");
 const initial = document.getElementById("phase");
 const hitDie = document.getElementById("hitDie");
 const load = document.getElementById("loading");
 const begin = document.getElementById("start");
-
 
 let edit = false
 
@@ -37,7 +36,7 @@ editButton.addEventListener('click', () => {
   edit = true
 } )
 
-const selectList = (profList, target, naming) => {
+const selectList = (profList, target, classes, naming) => {
   if (naming) {
     profList.forEach(item => {
       let profOption = document.createElement("option");
@@ -50,6 +49,23 @@ const selectList = (profList, target, naming) => {
       profOption.classList.add("skill")
       target.appendChild(profOption)
     })
+  } else if (classes) {
+    profList.forEach(classOp => {
+      
+      let i = 1
+      let classOption = document.createElement("option");
+      let className = document.createElement("p");
+      let name = document.createTextNode(classOp.name);
+
+      className.appendChild(name);
+      classOption.appendChild(className);
+      classOption.id = classOp.index;
+      classOption.classList.add("class");
+      className.id = i
+      className.classList.add("classId")
+      target.appendChild(classOption);
+      i++
+    });
   } else {
     profList.forEach(item => {
       let profOption = document.createElement("option");
@@ -73,24 +89,10 @@ const classFetch = () => {
   fetch(`${baseURL}classes`)
     .then(response => response.json())
     .then(classes => {
-      let i = 1
+      
       let classList = classes.results;
       delete classList[5]
-      classList.forEach(classOp => {
-
-        let classOption = document.createElement("option");
-        let className = document.createElement("p");
-        let name = document.createTextNode(classOp.name);
-
-        className.appendChild(name);
-        classOption.appendChild(className);
-        classOption.id = classOp.index;
-        classOption.classList.add("class");
-        className.id = i
-        className.classList.add("classId")
-        classesList.appendChild(classOption);
-        i++
-      });
+      selectList(classList, classesList, true, false)
     })
     .catch(() => console.error());
   loader(false)
@@ -122,8 +124,8 @@ const profFetch = () => {
       savingThrow2.value = (`${saveTwo}`)
 
       let profList = profs.proficiency_choices[0].from
-      selectList(profList, proficienciesOne, true)
-      selectList(profList, proficienciesTwo, true)
+      selectList(profList, proficienciesOne, false, true)
+      selectList(profList, proficienciesTwo, false, true)
     })
   phaseTwo.classList.remove("hide")
   loader(false)
