@@ -22,6 +22,7 @@ const initial = document.getElementById("phase");
 const hitDie = document.getElementById("hitDie");
 const load = document.getElementById("loading");
 const begin = document.getElementById("start");
+const name = document.getElementById("name")
 
 let edit = false
 
@@ -34,8 +35,15 @@ editButton.addEventListener('click', () => {
   editChoice.classList.add("hide")
   editForm.classList.remove("hide")
   edit = true
-} )
+})
 
+/**
+ * 
+ * @param {[]} profList 
+ * @param {variable} target 
+ * @param {boolean} classes 
+ * @param {boolean} naming 
+ */
 const selectList = (profList, target, classes, naming) => {
   if (naming) {
     profList.forEach(item => {
@@ -100,9 +108,16 @@ const classFetch = () => {
 }
 
 classId.addEventListener('click', () => {
+  if (name.value != ""){
   id = classChoice.options[classChoice.selectedIndex].id;
   phaseOne.classList.add("hide")
   profFetch();
+  }else{
+    Swal.fire({
+      icon: 'error',
+      text: 'Please enter a character name!',
+    })
+  }
 });
 
 /**
@@ -167,7 +182,7 @@ const equipFetch = () => {
   }
 }
 
-function loader(loading) {
+const loader = (loading) => {
   if (loading) {
     load.classList.remove("hide");
   } else {
