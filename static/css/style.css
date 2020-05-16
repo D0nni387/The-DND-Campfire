@@ -38,6 +38,8 @@ body {
     background-color: initial;
     border-style: none;
     color: #CFB53B;
+    cursor: default;
+    user-select: none;
 }
 
 @keyframes spin {
