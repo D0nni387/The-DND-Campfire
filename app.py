@@ -15,7 +15,6 @@ def get_intro():
     """
     Returns index page
     """
-
     return render_template("pages/index.html")
 
 @APP.route('/character/create')
@@ -142,7 +141,7 @@ def register():
                          'password' : password,
                          'email' : request.form['email']})
             session['username'] = request.form['username']
-            return redirect(url_for('login'))
+            return redirect(url_for('get_party'))
 
         return 'That username exists'
 
