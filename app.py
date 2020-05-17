@@ -148,5 +148,9 @@ def register():
 
     return render_template("pages/register.html")
 
+@APP.errorhandler(404)
+def page_not_found(e):
+    return render_template('pages/404.html'), 404
+
 if __name__ == '__main__':
     APP.run(host=os.environ.get('IP'), port=os.environ.get('PORT'), debug=os.environ.get('DEBUG'))
