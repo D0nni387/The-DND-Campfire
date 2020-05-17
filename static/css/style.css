@@ -136,3 +136,7 @@ body {
     cursor: default;
     user-select: none
 }
+
+.btn {
+    color: #e2e2e2;
+}
