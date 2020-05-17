@@ -3,7 +3,15 @@
 <div class="container" id="phase">
     <div class="row">
         <div class="col-12">
-            <h2>Select Your Gender</h2>
+            <div class="form-group">
+                <h4 class="header">What is your name</h4>
+                <input class="form-control" type="text" placeholder="Character Name" name="name" id="name">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h4 class="header">Select Your Characters Gender</h4>
         </div>
     </div>
     <div class="row">
@@ -14,49 +22,48 @@
             </select>
         </div>
     </div>
-        <div class="col-12">
-            <a class="btn" id="start" href="#" aria-label="Let's begin Creating">Let's Begin</a>
-        </div>
+    <div class="col-12 btn-format">
+        <a class="btn" id="start" href="#" aria-label="Let's begin Creating">Let's Begin</a>
     </div>
+</div>
 </div>
 
 <div class="container hide" id="phaseOne">
-    <div class="form-group">
-        <label for="name">Character Name</label>
-        <input class="form-control" type="text" placeholder="Character Name" name="name" id="name">
-    </div>
 
     <div class="form-group">
 
-        <label for="classList">Select Your Class</label>
+        <h4 class="header">Select Your Class</h4>
         <select class="form-control" id="classList" name="class_list">
 
         </select>
     </div>
-    <a class="btn" id="progress" href="#" aria-label="To Next Options">Next!</a>
+    <div class="col-12 btn-format">
+        <a class="btn" id="progress" href="#" aria-label="To Next Options">Next!</a>
+    </div>
 </div>
 
 
 <div class="container hide" id="phaseTwo">
-    <label for="hitDie">Hit Die</label>
-    <input class="form-control no-input" name="hit_die" type="text" id="hitDie" value="default" readonly>
-
-    <label for="savingThrow1">Saving Throw</label>
-    <input class="form-control no-input" name="saving_throw1" type="text" id="savingThrow1" value="default"
-        readonly>
-
-    <label for="savingThrow2">Saving Throw</label>
-    <input class="form-control" name="saving_throw2" type="text" id="savingThrow2" value="default" readonly>
-
+   
     <div class="form-group">
-        <label for="proficienciesOne">Select Your First Proficiency</label>
+        <h4 class="header">Select Your First Proficiency</h4>
         <select class="form-control" name="proficiency1" id="proficienciesOne">
 
         </select>
-        <label for="proficienciesTwo">Select Your Second Proficiency</label>
+        <h4 class="header">Select Your Second Proficiency</h4>
         <select class="form-control" name="proficiency2" id="proficienciesTwo">
 
         </select>
+    </div>
+    <div class="form-group">
+        <h4 class="header">Class Stats (These are automatically assigned!)</h4>
+        <h5>Hit Die:</h5>
+        <input class="form-control no-input" name="hit_die" type="text" id="hitDie" value="default" readonly>
+
+        <h5>Saving Throws</h5>
+        <input class="form-control no-input" name="saving_throw1" type="text" id="savingThrow1" value="default"
+            readonly>
+        <input class="form-control" name="saving_throw2" type="text" id="savingThrow2" value="default" readonly>
     </div>
 
     <a class="btn" id="progressTwo" href="#" aria-label="To Next Options">Next!</a>
@@ -64,21 +71,19 @@
 
 <div class="container hide" id="phaseThree">
     <div class="form-group">
-        <label for="start_equipment_choice">Select Your Starting Equipment</label>
+        <h4 class="header">Select Your Class</h4>
         <select class="form-control" name="start_equipment_choice" id="equipmentChoice">
 
         </select>
     </div>
 
 
-    <div class="div">
-        <label for="start_equip1">Starting Equipment</label>
+    <div class="col-12">
+        <h4 class="header">Class Default Equipment</h4>
         <input class="form-control" name="start_equip1" type="text" id="startEquip1" value="" readonly>
-
-        <label for="start_equip2">Starting Equipment</label>
         <input class="form-control" name="start_equip2" type="text" id="startEquip2" value="" readonly>
     </div>
-    
+
 </div>
 
-{% endblock %} 
+{% endblock %}
