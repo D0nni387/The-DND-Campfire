@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Girassol&family=Gotu&display=swap');
 
+html {
+    font-size: 16px;
+}
+
 body {
     font-family: "Gotu", sans-serif;
     color: #CFB53B;
@@ -8,6 +12,7 @@ body {
 .header {
     font-family: "Girassol", sans-serif;
     text-align: center;
+    padding: 2rem;
 }
 
 .logo {
@@ -107,6 +112,7 @@ body {
 
 .btn-format {
     text-align: center;
+    padding: 2rem;
 }
 
 .card-image {
@@ -124,4 +130,9 @@ body {
 
 .container-pad {
     padding: 5rem 1rem;
+}
+
+.character-list {
+    cursor: default;
+    user-select: none
 }
