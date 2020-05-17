@@ -140,3 +140,7 @@ body {
 .btn {
     color: #e2e2e2;
 }
+
+.paragraph-format {
+    text-align: center;
+}
