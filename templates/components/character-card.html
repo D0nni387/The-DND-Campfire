@@ -1,10 +1,12 @@
 {% block charcard %}
 <div class="container">
   <div class="row">
+    {% if party %}
     {% for characters in party %}
     <div class="col-sm-12 col-md-6 col-lg-4">
       <div class="card custom-card character">
-        <img class="card-img-top card-image" src="/static/images/avatars/{{characters.gender}}-{{characters.class}}.png" alt="Card image cap">
+        <img class="card-img-top card-image" src="/static/images/avatars/{{characters.gender}}-{{characters.class}}.png"
+          alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">{{characters.name}}</h5>
         </div>
@@ -14,12 +16,25 @@
           <li class="list-group-item character-list">Hit Die: {{characters.hit_die}}</li>
         </ul>
         <div class="card-body btn-format">
-          <a href="{{url_for('edit_character', character_id=characters._id)}}" class="btn card-link" aria-label="Edit Character">View/Edit</a>
-          <a href="{{url_for('delete_character', character_id=characters._id)}}" class="btn card-link" aria-label="Delete Character">Delete</a>
+          <a href="{{url_for('edit_character', character_id=characters._id)}}" class="btn card-link"
+            aria-label="Edit Character">View/Edit</a>
+          <a href="{{url_for('delete_character', character_id=characters._id)}}" class="btn card-link"
+            aria-label="Delete Character">Delete</a>
         </div>
       </div>
     </div>
     {% endfor %}
+    {% else %}
+    <div class="col-12">
+      <h3 class="header">It's just you alone in the wilderness</h3>
+    </div>
+    <div class="col-12 paragraph-format">
+      <p>The wilderness can be a cold and unwelcoming place alone and venturing forth wouldn't be advised</p>
+    </div>
+    <div class="col-12 btn-format">
+      <a href="{{ url_for('create_character') }}" class="btn">Create A Character</a>
+    </div>
+    {% endif %}
   </div>
 </div>
 {% endblock %}
