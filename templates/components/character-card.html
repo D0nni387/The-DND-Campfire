@@ -9,9 +9,9 @@
           <h5 class="card-title">{{characters.name}}</h5>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">{{characters.gender}}</li>
-          <li class="list-group-item">{{characters.class}}</li>
-          <li class="list-group-item">Hit Die: {{characters.hit_die}}</li>
+          <li class="list-group-item character-list">{{characters.gender}}</li>
+          <li class="list-group-item character-list">{{characters.class}}</li>
+          <li class="list-group-item character-list">Hit Die: {{characters.hit_die}}</li>
         </ul>
         <div class="card-body">
           <a href="{{url_for('edit_character', character_id=characters._id)}}" class="btn btn-format card-link" aria-label="Edit Character">View/Edit</a>
