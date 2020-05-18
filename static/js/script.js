@@ -23,12 +23,21 @@ const hitDie = document.getElementById("hitDie");
 const load = document.getElementById("loading");
 const begin = document.getElementById("start");
 const name = document.getElementById("name")
+const deleteChar = document.getElementById("delete")
 
 let edit = false
 
 begin.addEventListener('click', () => {
-  initial.classList.add("hide")
-  classFetch();
+  if (name.value != "") {
+    initial.classList.add("hide")
+    classFetch();
+
+  } else {
+    Swal.fire({
+      icon: 'error',
+      text: 'Please enter a character name!',
+    })
+  }
 })
 
 editButton.addEventListener('click', () => {
@@ -36,6 +45,7 @@ editButton.addEventListener('click', () => {
   editForm.classList.remove("hide")
   edit = true
 })
+
 
 /**
  * 
@@ -59,7 +69,7 @@ const selectList = (profList, target, classes, naming) => {
     })
   } else if (classes) {
     profList.forEach(classOp => {
-      
+
       let i = 1
       let classOption = document.createElement("option");
       let className = document.createElement("p");
@@ -93,38 +103,33 @@ const selectList = (profList, target, classes, naming) => {
  * Fetches classes and populates select data
  */
 const classFetch = () => {
-  loader(true)
+  loadingWheel(true)
   fetch(`${baseURL}classes`)
     .then(response => response.json())
     .then(classes => {
-      
+
       let classList = classes.results;
       delete classList[5]
       selectList(classList, classesList, true, false)
     })
     .catch(() => console.error());
-  loader(false)
-  phaseOne.classList.remove("hide")
+   
+    loadingWheel(false, phaseOne)
 }
 
+
 classId.addEventListener('click', () => {
-  if (name.value != ""){
   id = classChoice.options[classChoice.selectedIndex].id;
   phaseOne.classList.add("hide")
   profFetch();
-  }else{
-    Swal.fire({
-      icon: 'error',
-      text: 'Please enter a character name!',
-    })
-  }
+
 });
 
 /**
  * Fetches Proficiencies and populates select data
  */
 const profFetch = () => {
-  loader(true)
+  loadingWheel(true)
   fetch(`${baseURL}classes/${id}`)
     .then(response => response.json())
     .then(profs => {
@@ -142,8 +147,8 @@ const profFetch = () => {
       selectList(profList, proficienciesOne, false, true)
       selectList(profList, proficienciesTwo, false, true)
     })
-  phaseTwo.classList.remove("hide")
-  loader(false)
+   
+    loadingWheel(false, phaseTwo)
 }
 
 progress.addEventListener('click', () => {
@@ -156,7 +161,7 @@ progress.addEventListener('click', () => {
  * Fetches starting-equipment and creates div elements
  */
 const equipFetch = () => {
-  loader(true)
+  loadingWheel(true)
   fetch(`${baseURL}starting-equipment/${idNum}`)
     .then(response => response.json())
     .then(equip => {
@@ -173,8 +178,7 @@ const equipFetch = () => {
       let profList = equip.choice_1[1].from
       selectList(profList, equipmentChoice, false)
     })
-  loader(false)
-  phaseThree.classList.remove("hide")
+  loadingWheel(false, phaseThree)
   if (edit == true) {
     confirmEdit.classList.remove("hide")
   } else {
@@ -182,10 +186,13 @@ const equipFetch = () => {
   }
 }
 
-const loader = (loading) => {
-  if (loading) {
-    load.classList.remove("hide");
+const loadingWheel = (loading, container) => {
+  if (loading != false) {
+    load.classList.remove("hide")
   } else {
-    load.classList.add("hide");
+    setTimeout(function () {
+      container.classList.remove("hide")
+      load.classList.add("hide");
+    }, 3000);    
   }
 }
