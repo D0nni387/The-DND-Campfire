@@ -40,6 +40,11 @@ body {
 
 /* Nav Bar */
 
+.logo {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .navbar-stick {
     display: flex;
     top: 0px;
@@ -98,6 +103,12 @@ body {
 
 .btn {
     color: #e2e2e2;
+}
+
+.story {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Character Card */
