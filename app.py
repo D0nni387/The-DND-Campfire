@@ -17,11 +17,31 @@ def get_intro():
     """
     return render_template("pages/index.html")
 
-@APP.route('/character/create')
+@APP.route('/character/create', methods=['GET', 'POST'])
 def create_character():
     """
-    Returns Create Page
+    Returns Create Page and sends creation form to database when posted.
     """
+    if request.method == 'POST':
+        characters = MONGO.db.character
+        new_character = {
+            'userID' : session['username'],
+            'gender' :request.form.get('gender'),
+            'name':request.form.get('name'),
+            'class':request.form.get('class_list'),
+            'hit_die':request.form.get('hit_die'),
+            'saving_throw1':request.form.get('saving_throw1'),
+            'saving_throw2':request.form.get('saving_throw2'),
+            'proficiency1':request.form.get('proficiency1'),
+            'proficiency2':request.form.get('proficiency2'),
+            'start_equipment_choice':request.form.get('start_equipment_choice'),
+            'start_equip1':request.form.get('start_equip1'),
+            'start_equip2':request.form.get('start_equip2'),
+            'story':request.form.get('story')
+            }
+        characters.insert_one(new_character)
+        return redirect(url_for('get_party'))
+
     return render_template("pages/create.html")
 
 @APP.route('/account')
@@ -76,7 +96,8 @@ def update_character(character_id):
         'proficiency2':request.form.get('proficiency2'),
         'start_equipment_choice':request.form.get('start_equipment_choice'),
         'start_equip1':request.form.get('start_equip1'),
-        'start_equip2':request.form.get('start_equip2')})
+        'start_equip2':request.form.get('start_equip2'),
+        'story':request.form.get('story')})
     return redirect(url_for('get_party'))
 
 @APP.route('/character/delete/<character_id>')
@@ -86,30 +107,6 @@ def delete_character(character_id):
     """
     MONGO.db.character.remove({"_id": ObjectId(character_id)})
     return redirect(url_for('get_party'))
-
-@APP.route('/character/create', methods=['POST'])
-def insert_character():
-    """
-    Passes new character form data database
-    """
-    characters = MONGO.db.character
-    new_character = {
-        'userID' : session['username'],
-        'gender' :request.form.get('gender'),
-        'name':request.form.get('name'),
-        'class':request.form.get('class_list'),
-        'hit_die':request.form.get('hit_die'),
-        'saving_throw1':request.form.get('saving_throw1'),
-        'saving_throw2':request.form.get('saving_throw2'),
-        'proficiency1':request.form.get('proficiency1'),
-        'proficiency2':request.form.get('proficiency2'),
-        'start_equipment_choice':request.form.get('start_equipment_choice'),
-        'start_equip1':request.form.get('start_equip1'),
-        'start_equip2':request.form.get('start_equip2')
-    }
-    characters.insert_one(new_character)
-    return redirect(url_for('get_party'))
-
 
 @APP.route('/login', methods=['GET', 'POST'])
 def login():
