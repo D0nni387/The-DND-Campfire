@@ -1,18 +1,22 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
 <div class="container">
-    <form action="{{ url_for('insert_character') }}" method="POST" class="col-12">
+    <form action="{{ url_for('create_character') }}" method="POST" class="col-12">
 
 
-        <div class="container">
-            <div class="row loader">
-                <div id="loading" class="hide"></div>
+
+        <div class="row loader">
+            <div id="loading" class="hide">
+
             </div>
         </div>
 
         {% include 'components/create-form.html' %}
-        <div class="col-12 btn-format">
-            <button class="btn hide" type="submit" name="action" id="confirmAdd">Add</button>
+
+        <div class="row">
+            <div class="col-12 btn-format">
+                <button class="btn hide" type="submit" name="action" id="confirmAdd">Add</button>
+            </div>
         </div>
     </form>
 </div>
