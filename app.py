@@ -69,36 +69,31 @@ def get_party():
     party_list = [characters for characters in party_char]
     return render_template("pages/party.html", party=party_list)
 
-@APP.route('/character/edit/<character_id>')
+@APP.route('/character/edit/<character_id>', methods=['GET', 'POST'])
 def edit_character(character_id):
     """
     Takes character_id from party page and redirects to edit page for specified character
     """
     this_character = MONGO.db.character.find_one({"_id": ObjectId(character_id)})
+    if request.method == 'POST':
+        characters = MONGO.db.character
+        characters.update({'_id':ObjectId(character_id)}, {
+            'userID' : session['username'],
+            'gender' :request.form.get('gender'),
+            'name':request.form.get('name'),
+            'class':request.form.get('class_list'),
+            'hit_die':request.form.get('hit_die'),
+            'saving_throw1':request.form.get('saving_throw1'),
+            'saving_throw2':request.form.get('saving_throw2'),
+            'proficiency1':request.form.get('proficiency1'),
+            'proficiency2':request.form.get('proficiency2'),
+            'start_equipment_choice':request.form.get('start_equipment_choice'),
+            'start_equip1':request.form.get('start_equip1'),
+            'start_equip2':request.form.get('start_equip2'),
+            'story':request.form.get('story')})
+        return redirect(url_for('get_party'))
 
     return render_template("pages/edit.html", character=this_character)
-
-@APP.route('/character/update/<character_id>', methods=['POST'])
-def update_character(character_id):
-    """
-    Passed submitted edit for and ammends database for character_id
-    """
-    characters = MONGO.db.character
-    characters.update({'_id':ObjectId(character_id)}, {
-        'userID' : session['username'],
-        'gender' :request.form.get('gender'),
-        'name':request.form.get('name'),
-        'class':request.form.get('class_list'),
-        'hit_die':request.form.get('hit_die'),
-        'saving_throw1':request.form.get('saving_throw1'),
-        'saving_throw2':request.form.get('saving_throw2'),
-        'proficiency1':request.form.get('proficiency1'),
-        'proficiency2':request.form.get('proficiency2'),
-        'start_equipment_choice':request.form.get('start_equipment_choice'),
-        'start_equip1':request.form.get('start_equip1'),
-        'start_equip2':request.form.get('start_equip2'),
-        'story':request.form.get('story')})
-    return redirect(url_for('get_party'))
 
 @APP.route('/character/delete/<character_id>')
 def delete_character(character_id):
