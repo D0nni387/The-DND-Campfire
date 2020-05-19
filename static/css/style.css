@@ -68,8 +68,8 @@ body {
 }
 
 #loading {
-    border: 1rem solid #e6a11c;
-    border-top: 1rem solid #D3D3D3;
+    border: 1rem solid #e2e2e2;
+    border-top: 1rem solid #e51111;
     border-radius: 50%;
     width: 10rem;
     height: 10rem;
