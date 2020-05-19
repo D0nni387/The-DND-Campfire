@@ -4,9 +4,11 @@
     <div class="row">
         <div class="col-sm-12 col-md-5">
             <div class="card custom-card character">
-                <img class="card-img-top card-image" src="/static/images/avatars/{{character.gender}}-{{character.class}}.png" alt="Card image cap">
+                <img class="card-img-top card-image"
+                    src="/static/images/avatars/{{character.gender}}-{{character.class}}.png" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">{{character.name}}</h5>
+                    <p>{{character.story}}</p>
                 </div>
                 <ul class="list-group list-group-flush">
                     <p class="card-titles">Gender</p>
@@ -26,7 +28,7 @@
                     <li class="list-group-item character-list">{{character.start_equip1}}</li>
                     <li class="list-group-item character-list">{{character.start_equip2}}</li>
                 </ul>
-               
+
             </div>
         </div>
         <div class="col-sm-12 col-md-7">
@@ -35,10 +37,7 @@
                     <a href="#" class="btn" id="editButton" aria-label="Edit character">Edit {{character.name}}</a>
                     <a href="{{url_for('get_party')}}" class="btn" aria-label="Party Screen">Return to Party Screen</a>
                 </div>
-                <form action="{{ url_for('update_character', character_id=character._id)}}" method="POST"
-                    class="col-12">
-
-
+                <form action="{{ url_for('update_character', character_id=character._id)}}" method="POST" class="col-12">
                     <div class="container">
                         <div class="row loader">
                             <div id="loading" class="hide"></div>
@@ -48,11 +47,109 @@
                     <div class="container-fluid hide btn-format" id="editForm">
                         <div class="row">
                             <div class="col-12">
-                        {% include 'components/create-form.html' %}
-                    </div>
-                    <div class="col-12 btn-format">
-                        <button class="btn hide" type="submit" name="action" id="confirmEdit">Apply Changes</button>
-                    </div>
+                                <div class="container" id="phase">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <h4 class="header">What is your name</h4>
+                                                <input class="form-control" type="text" placeholder="Character Name"
+                                                    name="name" id="name" value="{{character.name}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4 class="header">Select Your Characters Gender</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <select class="form-control" id="gender" name="gender">
+                                                <option>Male</option>
+                                                <option>Female</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 btn-format">
+                                        <a class="btn" id="start" href="#" aria-label="Let's begin Creating">Let's
+                                            Begin</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="container hide" id="phaseOne">
+
+                                <div class="form-group">
+
+                                    <h4 class="header">Select Your Class</h4>
+                                    <select class="form-control" id="classList" name="class_list">
+
+                                    </select>
+                                </div>
+                                <div class="col-12 btn-format">
+                                    <a class="btn" id="progress" href="#" aria-label="To Next Options">Next!</a>
+                                </div>
+                            </div>
+
+
+                            <div class="container hide" id="phaseTwo">
+
+                                <div class="form-group">
+                                    <h4 class="header">Select Your First Proficiency</h4>
+                                    <select class="form-control" name="proficiency1" id="proficienciesOne">
+
+                                    </select>
+                                    <h4 class="header">Select Your Second Proficiency</h4>
+                                    <select class="form-control" name="proficiency2" id="proficienciesTwo">
+
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <h4 class="header">Class Stats (These are automatically assigned!)</h4>
+                                    <h5>Hit Die:</h5>
+                                    <input class="form-control no-input" name="hit_die" type="text" id="hitDie"
+                                        value="default" readonly>
+
+                                    <h5>Saving Throws</h5>
+                                    <input class="form-control no-input" name="saving_throw1" type="text"
+                                        id="savingThrow1" value="default" readonly>
+                                    <input class="form-control" name="saving_throw2" type="text" id="savingThrow2"
+                                        value="default" readonly>
+                                </div>
+
+                                <a class="btn" id="progressTwo" href="#" aria-label="To Next Options">Next!</a>
+                            </div>
+
+                            <div class="container hide" id="phaseThree">
+                                <div class="form-group col-12">
+                                    <h4 class="header">Select Your Class</h4>
+                                    <select class="form-control" name="start_equipment_choice" id="equipmentChoice">
+
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group col-12">
+                                    <h4 class="header">Class Default Equipment</h4>
+                                    <input class="form-control" name="start_equip1" type="text" id="startEquip1"
+                                        value="" readonly>
+                                    <input class="form-control" name="start_equip2" type="text" id="startEquip2"
+                                        value="" readonly>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="col-12 form-group">
+                                <textarea class="form-control story" id="story" rows="4"
+                                    name="story">{{character.story}}</textarea>
+                            </div>
+                        </div>
+                        <div class="col-12 btn-format">
+                            <button class="btn hide" type="submit" name="action" id="confirmEdit">Apply Changes</button>
+                        </div>
 
                     </div>
                 </form>
