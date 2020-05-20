@@ -23,31 +23,14 @@ const hitDie = document.getElementById("hitDie");
 const load = document.getElementById("loading");
 const begin = document.getElementById("start");
 const name = document.getElementById("name")
-const deleteChar = document.getElementById("delete")
 
+/* Global Variables */
 let edit = false
 
-begin.addEventListener('click', () => {
-  if (name.value != "") {
-    initial.classList.add("hide")
-    classFetch();
-
-  } else {
-    Swal.fire({
-      icon: 'error',
-      text: 'Please enter a character name!',
-    })
-  }
-})
-
-editButton.addEventListener('click', () => {
-  editChoice.classList.add("hide")
-  editForm.classList.remove("hide")
-  edit = true
-})
-
-
 /**
+ * Takes the API data profList and produces select elements to DOM, 
+ * Target provides DOM target, classes is true if class list is being produced. 
+ * naming is true if returned data is deeper than one level
  * 
  * @param {[]} profList 
  * @param {variable} target 
@@ -113,8 +96,8 @@ const classFetch = () => {
       selectList(classList, classesList, true, false)
     })
     .catch(() => console.error());
-   
-    loadingWheel(false, phaseOne)
+
+  loadingWheel(false, phaseOne)
 }
 
 
@@ -147,15 +130,11 @@ const profFetch = () => {
       selectList(profList, proficienciesOne, false, true)
       selectList(profList, proficienciesTwo, false, true)
     })
-   
-    loadingWheel(false, phaseTwo)
+
+  loadingWheel(false, phaseTwo)
 }
 
-progress.addEventListener('click', () => {
-  idNum = classChoice.options[classChoice.selectedIndex].firstElementChild.id
-  phaseTwo.classList.add("hide")
-  equipFetch();
-});
+
 
 /**
  * Fetches starting-equipment and creates div elements
@@ -186,6 +165,13 @@ const equipFetch = () => {
   }
 }
 
+/**
+ * if loading is true loading spinner shown, 
+ * container defines what is to be shown when loaded
+ * 
+ * @param {boolean} loading 
+ * @param {variable} container 
+ */
 const loadingWheel = (loading, container) => {
   if (loading != false) {
     load.classList.remove("hide")
@@ -193,6 +179,33 @@ const loadingWheel = (loading, container) => {
     setTimeout(function () {
       container.classList.remove("hide")
       load.classList.add("hide");
-    }, 3000);    
+    }, 3000);
   }
 }
+
+/* On click Events */
+
+progress.addEventListener('click', () => {
+  idNum = classChoice.options[classChoice.selectedIndex].firstElementChild.id
+  phaseTwo.classList.add("hide")
+  equipFetch();
+});
+
+begin.addEventListener('click', () => {
+  if (name.value != "") {
+    initial.classList.add("hide")
+    classFetch();
+
+  } else {
+    Swal.fire({
+      icon: 'error',
+      text: 'Please enter a character name!',
+    })
+  }
+})
+
+editButton.addEventListener('click', () => {
+  editChoice.classList.add("hide")
+  editForm.classList.remove("hide")
+  edit = true
+})
