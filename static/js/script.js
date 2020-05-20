@@ -100,7 +100,6 @@ const classFetch = () => {
   loadingWheel(false, phaseOne)
 }
 
-
 classId.addEventListener('click', () => {
   id = classChoice.options[classChoice.selectedIndex].id;
   phaseOne.classList.add("hide")
@@ -133,8 +132,6 @@ const profFetch = () => {
 
   loadingWheel(false, phaseTwo)
 }
-
-
 
 /**
  * Fetches starting-equipment and creates div elements
