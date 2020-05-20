@@ -5,7 +5,7 @@
     <div class="col-sm-12 col-md-6 col-lg-4">
       <div class="card custom-card character">
         <img class="card-img-top card-image" src="/static/images/avatars/{{characters.gender}}-{{characters.class}}.png"
-          alt="Card image cap">
+          alt="Profile Avatar">
         <div class="card-body">
           <h5 class="card-title">{{characters.name}}</h5>
         </div>
@@ -31,7 +31,7 @@
       <p>The wilderness can be a cold and unwelcoming place alone and venturing forth wouldn't be advised</p>
     </div>
     <div class="col-12 btn-format">
-      <a href="{{ url_for('create_character') }}" class="btn">Create A Character</a>
+      <a href="{{ url_for('create_character') }}" class="btn" aria-label="Create a Character">Create A Character</a>
     </div>
     {% endif %}
 

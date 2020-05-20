@@ -1,5 +1,7 @@
 {% block create %}
 
+<!-- initial user input phase -->
+
 <div class="container" id="phase">
     <div class="row">
         <div class="col-12">
@@ -26,12 +28,11 @@
         <a class="btn" id="start" href="#" aria-label="Let's begin Creating">Let's Begin</a>
     </div>
 </div>
-</div>
+
+<!-- First phase of API data-->
 
 <div class="container hide" id="phaseOne">
-
     <div class="form-group">
-
         <h4 class="header">Select Your Class</h4>
         <select class="form-control" id="classList" name="class_list">
 
@@ -42,9 +43,9 @@
     </div>
 </div>
 
+<!-- Second Phase of API data-->
 
 <div class="container hide" id="phaseTwo">
-
     <div class="form-group">
         <h4 class="header">Select Your First Proficiency</h4>
         <select class="form-control" name="proficiency1" id="proficienciesOne">
@@ -59,15 +60,15 @@
         <h4 class="header">Class Stats (These are automatically assigned!)</h4>
         <h5>Hit Die:</h5>
         <input class="form-control no-input" name="hit_die" type="text" id="hitDie" value="default" readonly>
-
         <h5>Saving Throws</h5>
         <input class="form-control no-input" name="saving_throw1" type="text" id="savingThrow1" value="default"
             readonly>
         <input class="form-control" name="saving_throw2" type="text" id="savingThrow2" value="default" readonly>
     </div>
-
     <a class="btn" id="progressTwo" href="#" aria-label="To Next Options">Next!</a>
 </div>
+
+<!-- Third phase of API data-->
 
 <div class="container hide" id="phaseThree">
     <div class="form-group col-12">
@@ -76,24 +77,15 @@
 
         </select>
     </div>
-
-
     <div class="form-group col-12">
         <h4 class="header">Class Default Equipment</h4>
         <input class="form-control" name="start_equip1" type="text" id="startEquip1" value="" readonly>
         <input class="form-control" name="start_equip2" type="text" id="startEquip2" value="" readonly>
     </div>
-
-
     <div class="col-12 form-group">
         <h4 class="header">What's Your Story</h4>
         <textarea class="form-control story" id="story" rows="4" name="story"></textarea>
     </div>
-
-    <div class="col-12 btn-format">
-        <button class="btn hide" type="submit" name="action" id="confirmAdd">Add</button>
-    </div>
-
 </div>
 
 {% endblock %}

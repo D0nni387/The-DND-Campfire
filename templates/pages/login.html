@@ -3,12 +3,13 @@
 <h1 class="header">Login</h1>
 
 <div class="container">
-
+  <!-- Messages loaded for incorrect details to flash to DOM-->
+  {% include 'components/messages.html' %}
+  
+  <!-- Login form -->
   {% include 'components/login-form.html' %}
-   
-</div>
 
-<div class="container">
+  <!-- Registration Link-->
   <div class="row">
     <div class="col-12">
       <p>Don't have an account? <a href="{{url_for('register')}}">Register Here</a></p>

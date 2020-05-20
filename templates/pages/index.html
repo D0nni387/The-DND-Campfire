@@ -3,6 +3,8 @@
 
 {% if 'username' in session %}
 
+<!-- If user logged in Produces below welcome screen-->
+
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -49,8 +51,9 @@
     </div>
 </div>
 
-
 {% else %}
+
+<!-- If no cookie detected New user/ Logged out user-->
 
 <div class="container">
     <div class="row">
@@ -86,7 +89,6 @@
         </div>
     </div>
 </div>
-
 
 {% endif %}
 
