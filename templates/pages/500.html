@@ -1,0 +1,20 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="header">Stop Right There</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p>We're not letting you in, we don't even know who you are. it's a cost of <strong>500</strong> gold to get in here so i suggest you go home</p>
+        </div>
+        <div class="col-12 btn-format">
+            <a href="{{ url_for('get_intro') }}" class="btn" aria-label="home">Go Home</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
