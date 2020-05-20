@@ -143,10 +143,16 @@ def register():
 
 @APP.errorhandler(404)
 def page_not_found(e):
+    """
+    On 404 error passes user to custom 404 page
+    """
     return render_template('pages/404.html'), 404
 
 @APP.errorhandler(500)
 def internal_error(err):
+    """
+    On 500 error passes user to custom 500 page
+    """
     return render_template('pages/500.html'), 500
 
 if __name__ == '__main__':
