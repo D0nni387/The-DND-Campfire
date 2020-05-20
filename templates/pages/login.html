@@ -1,19 +1,31 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
+<div class="container">
+  {% if 'username' in session %}
+  <h5 class="header">What are you doing here!</h5>
+
+  <p class="paragraph-format">Instead of logging in again, why not go create a character!</p>
+
+{% else %}
+
+
 <h1 class="header">Login</h1>
 
-<div class="container">
-  <!-- Messages loaded for incorrect details to flash to DOM-->
-  {% include 'components/messages.html' %}
-  
-  <!-- Login form -->
-  {% include 'components/login-form.html' %}
 
-  <!-- Registration Link-->
-  <div class="row">
-    <div class="col-12">
-      <p>Don't have an account? <a href="{{url_for('register')}}">Register Here</a></p>
-    </div>
+
+
+<!-- Messages loaded for incorrect details to flash to DOM-->
+{% include 'components/messages.html' %}
+
+<!-- Login form -->
+{% include 'components/login-form.html' %}
+
+<!-- Registration Link-->
+<div class="row">
+  <div class="col-12">
+    <p>Don't have an account? <a href="{{url_for('register')}}">Register Here</a></p>
   </div>
+</div>
+{% endif %}
 </div>
 {% endblock %}
