@@ -1,4 +1,4 @@
-const baseURL = "https://cors-anywhere.herokuapp.com/https://dnd5eapi.co/api/";
+const baseURL = "https://dnd5eapi.co/api/";
 const proficienciesOne = document.getElementById("proficienciesOne");
 const proficienciesTwo = document.getElementById("proficienciesTwo");
 const equipmentChoice = document.getElementById("equipmentChoice");
